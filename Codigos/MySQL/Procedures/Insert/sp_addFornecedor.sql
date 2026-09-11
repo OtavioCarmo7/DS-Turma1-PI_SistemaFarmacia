@@ -10,98 +10,69 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS sp_AddFornecedor //
 
 -- Criação Procedure
-CREATE OR ALTER PROCEDURE sp_AddFornecedor
+CREATE PROCEDURE sp_AddFornecedor
+(
 	-- Fornecedor
-	@nome VARCHAR(255),
-	@cnpj CHAR(14),
-	@email VARCHAR(255),
-	@telefone VARCHAR(14),
+	IN p_nome VARCHAR(255),
+	IN p_cnpj CHAR(14),
+	IN p_email VARCHAR(255),
+	IN p_telefone VARCHAR(14),
 
 	-- Endereço
-	@cep VARCHAR(9),
-	@logradouro VARCHAR(50),
-	@bairro VARCHAR(50),
-	@cidade VARCHAR(100),
-	@uf CHAR(2), 
+	IN p_cep VARCHAR(9),
+	IN p_logradouro VARCHAR(50),
+	IN p_bairro VARCHAR(50),
+	IN p_cidade VARCHAR(100),
+	IN p_uf CHAR(2), 
 
 	-- Endereço Fornecedor
-	@id_Fornecedor INT,
-	@id_Endereco INT,
-	@numero VARCHAR(5),
-	@complemento VARCHAR(20),
-	@referencia VARCHAR(100)
-AS
+	IN p_id_Fornecedor INT,
+	IN p_id_Endereco INT,
+	IN p_numero VARCHAR(5),
+	IN p_complemento VARCHAR(20),
+	IN p_referencia VARCHAR(100)
+)
 BEGIN
 
-	-- SET NOCOUNT ON:
-    -- Evita mensagens automáticas "X linhas afetadas"
-    -- Ajuda em procedures (menos poluição no resultado)
-	SET NOCOUNT ON;
+	DECLARE v_existe INT DEFAULT 0;
+    DECLARE v_ultimo_id INT;
+    
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+        RESIGNAL;
+	END;
+    
+    START TRANSACTION;
+    
+	-- Se existir já um fornecedor cadastrado com o mesmo cnpj ele manda a mensagem
+	SELECT COUNT(1)
+	INTO v_existe
+    FROM Tbl_Fornecedor 
+	WHERE cnpj = p_cnpj
+    FOR UPDATE;
 
-	-- Começo TRY
-	BEGIN TRY 
-		
-		BEGIN TRAN
+	IF v_existe > 0 THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Fornecedor com CNPJ informado já cadastrado.';
+	END IF;
 
-		-- Se existir já um fornecedor cadastrado com o mesmo cnpj ele manda a mensagem
-		IF EXISTS (
-			SELECT 1
-			FROM Tbl_Fornecedor WITH (UPDLOCK, HOLDLOCK)
-			WHERE cnpj = @cnpj
-		)
+	INSERT INTO Tbl_Fornecedor (nome, cnpj, email) 
+	VALUES (p_nome, p_cnpj, p_email);
 
-		BEGIN 
+	SET v_ultimo_Id = LAST_INSERT_ID();
 
-			RAISERROR('Fornecedor com cnpj $s já cadastrado.', 16, 1, @cnpj);
-		
-			ROLLBACK TRAN
+	IF ROW_COUNT() = 1 THEN
+		INSERT INTO Tbl_Telefone_Fornecedor (id_Fornecedor, telefone) 
+		VALUES (v_ultimo_Id, p_telefone);
 
-			RETURN 
-		END
-		
-		-- Declara a variável do último id adicionado na tabela
-		DECLARE @ultimo_Id INT;
+		INSERT INTO Tbl_Fornecedor_Endereco (id_Fornecedor, id_Endereco, numero, complemento, referencia) 
+		VALUES (v_ultimo_Id, p_id_Endereco, p_numero, p_complemento, p_referencia);
 
-		-- Adiciona o fornecedor
-		INSERT INTO Tbl_Fornecedor (nome, cnpj, email) VALUES
-		(@nome, @cnpj, @email);
+		COMMIT;
+	ELSE
+		ROLLBACK;
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Falha ao adicionar o fornecedor.';
+	END IF;
+END //
 
-		-- Coloca o valor do último id na variável criada
-		SET @ultimo_Id = SCOPE_IDENTITY();
-
-		-- Se adicionar o fornecedor, já adiciona o telefone e o endereço dele
-		IF @@ROWCOUNT = 1
-		BEGIN 
-		
-			INSERT INTO Tbl_Telefone_Fornecedor (id_Fornecedor, telefone) VALUES 
-					(@ultimo_Id, @telefone)
-
-			INSERT INTO Tbl_Fornecedor_Endereco (id_Fornecedor, id_Endereco, numero, complemento, referencia) VALUES
-				(@id_Fornecedor, @id_Endereco, @numero, @complemento, @referencia);
-
-			PRINT 'Fornecedor adicionado com sucesso!'
-
-			COMMIT TRAN;
-
-		END
-
-		ELSE
-		BEGIN
-			ROLLBACK TRAN;
-			RAISERROR('Falha ao adicionar o fornecedor', 16, 1);
-			RETURN;
-		END
-	END TRY
-
-	-- Começo CATCH
-	BEGIN CATCH
-
-		IF @@TRANCOUNT > 0 
-			ROLLBACK TRAN
-
-		DECLARE @Mensagem NVARCHAR(4000) = ERROR_MESSAGE();
-
-		RAISERROR(@Mensagem, 16, 1)
-	END CATCH
-END
-GO
+DELIMITER ;

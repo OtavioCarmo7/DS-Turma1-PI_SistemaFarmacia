@@ -204,58 +204,31 @@ CREATE TABLE Tbl_Produto_Venda
 	FOREIGN KEY (id_Produto) REFERENCES Tbl_Produto (id)
 );
 
--- ================================= TYPES =================================
-
-/* Tabelas temporárias que criamos para usar nas procedures, são utilizadas para quando temos um processo variável,
-ou seja, um cliente que pode comprar vários produtos, e não algo fixo, onde o cliente só pode colocar um cpf, por
-exemplo */
-
-CREATE TYPE Tbl_Type_ProdutoCompra AS TABLE
-(
-	id_Produto INT NOT NULL,
-	qnt INT NOT NULL,
-	valor_Unitario DECIMAL(8,2) NOT NULL,
-	cod VARCHAR(10),
-	validade DATE,
-	posicao VARCHAR(30)
-);
-GO
-
-CREATE TYPE Tbl_Type_ProdutoVenda AS TABLE
-(
-	id_Produto INT NOT NULL,
-	qnt INT NOT NULL,
-	valor_Unitario DECIMAL(8,2) NOT NULL
-)
-
 -- ================================= TESTANDO PROCEDURES =================================
 
 -- === AddFornecedor ==
-EXEC sp_AddFornecedor 'Andre', 1231231223452, 'andre@gmail.com', 11992180909
+CALL sp_AddFornecedor ('Andre', 1231231223452, 'andre@gmail.com', 11992180909);
 
-SELECT * FROM Tbl_Fornecedor
-SELECT * FROM Tbl_Telefone_Fornecedor
+SELECT * FROM Tbl_Fornecedor;
+SELECT * FROM Tbl_Telefone_Fornecedor;
 
 -- == AddFuncionario ==
-EXEC sp_AddFuncionario 'Paulo', 12312312234, 'paulo@gmail.com', 11992180909, '09/11/21', 88877765456789, '07/06/24', 'gerente', 'Ativo'
+CALL sp_AddFuncionario ('Paulo', 12312312234, 'paulo@gmail.com', 11992180909, '09/11/21', 88877765456789, '07/06/24', 'gerente', 'Ativo');
 
-SELECT * FROM Tbl_Usuario
-SELECT * FROM Tbl_Telefone_Usuario
-SELECT * FROM Tbl_Funcionario
+SELECT * FROM Tbl_Usuario;
+SELECT * FROM Tbl_Telefone_Usuario;
+SELECT * FROM Tbl_Funcionario;
 
 -- == ReporEstoque ==
 
 -- Para repor o estoque tenho que 
-DECLARE @itens Tbl_Type_ProdutoCompra;
 
-INSERT INTO @itens (id_Produto, qnt, valor_Unitario, cod, validade, posicao)
-VALUES 
-	(1, 100, 5.50, 'L004', '2027-01-15', 'A1-P5')
-
-EXEC sp_ReporEstoque 
-	@id_Fornecedor = 1,
-	@total_Compra = 1195.00,
-	@itens = @itens;
+CALL sp_ReporEstoque 
+(
+	1, 
+    1195.00, 
+    '[{"id_produto": 1; "qnt": 2; "valor_unitario": 12.50; "cod": "L004", "validade": "2027-01-05", "posicao": "A1-P5"}]'
+);
 
 SELECT * FROM Tbl_Compra ORDER BY id DESC;
 SELECT * FROM Tbl_Produto_Compra ORDER BY id DESC;
@@ -264,7 +237,16 @@ SELECT * FROM Tbl_Estoque ORDER BY id DESC;
 
 -- == AddCliente ==
 
-CALL sp_AddCliente ('Otávio', '99999999999', 'otavio.augusto@gmail.com', 'Ota_01', '02/10/2006', '11992181212', 'true');
+CALL sp_AddCliente 
+(
+	'Otávio', 
+    '99999999999', 
+    'otavio.augusto@gmail.com', 
+    'Ota_01', 
+    '2006/10/02', 
+    '11992181212', 
+    'true'
+);
 
 SELECT * FROM Tbl_Cliente;
 SELECT * FROM Tbl_Usuario;
@@ -278,81 +260,33 @@ SELECT * FROM Tbl_Cliente;
 SELECT * FROM Tbl_Funcionario;
 
 -- ===== TESTE 1: venda com 2 produtos, pagamento em dinheiro com troco =====
-DECLARE @itens Tbl_Type_ProdutoVenda;
 
-INSERT INTO @itens (id_Produto, qnt, valor_Unitario)
-VALUES 
-	(1, 2, 12.50)
-
--- É necessário criar a procedure de criar cliente, produto e funcionario
 CALL sp_realizarVenda 
 (
-	1,
-	3,
-	'NFE-0001',
-	'presencial',
-	@itens,
-	'dinheiro',
-	50.90,
-	60.00,
-	'pago'
+	1, 
+	3, 
+    'NFE-0001', 
+    'presencial', 
+    'dinheiro', 
+    50.90, 
+    60.00, 
+    'pago', 
+    '[{"id_produto": 1, "qnt": 2, "valor_unitario": 12.50}]'
 );
 
 -- Confere os resultados
 SELECT * FROM Tbl_Venda ORDER BY id DESC;
 SELECT * FROM Tbl_Produto_Venda ORDER BY id DESC;
 SELECT * FROM Tbl_Pagamento_Venda ORDER BY id DESC;
-GO
-
--- ===== TESTE 2: pagamento no cartão (sem troco) =====
-DECLARE @itens2 Tbl_Type_ProdutoVenda;
-
-INSERT INTO @itens2 (id_Produto, qnt, valor_Unitario)
-VALUES (1, 1, 12.50);
-
-EXEC sp_realizarVenda
-	@id_Cliente = 1,
-	@id_Funcionario = 4,
-	@nfe = 'NFE-0002',
-	@canal_Venda = 'presencial',
-	@itens = @itens2,
-	@forma_Pagamento = 'cartao',
-	@valor_Pago = 12.50,
-	@valor_Recebido = NULL,
-	@situacao = 'pago';
-
-SELECT * FROM Tbl_Venda ORDER BY id DESC;
-SELECT * FROM Tbl_Pagamento_Venda ORDER BY id DESC;
-GO
-
--- ===== TESTE 3: erro proposital  valor recebido menor que o valor pago =====
-DECLARE @itens3 Tbl_Type_ProdutoVenda;
-INSERT INTO @itens3 (id_Produto, qnt, valor_Unitario) VALUES (1, 1, 12.50);
-
-EXEC sp_realizarVenda
-	@id_Cliente = 1,
-	@id_Funcionario = 4,
-	@nfe = 'NFE-0003',
-	@canal_Venda = 'presencial',
-	@itens = @itens3,
-	@forma_Pagamento = 'dinheiro',
-	@valor_Pago = 12.50,
-	@valor_Recebido = 10.00,   -- menor que o valor pago, deve dar erro
-	@situacao = 'pago';
-
--- Confirma que NADA foi gravado dessa tentativa (nem a venda, nem o produto_venda)
-
-SELECT * FROM Tbl_Produto
-SELECT * FROM Tbl_Lote
 
 -- == ViewVendas ==
 
-EXEC sp_ViewVendas
+CALL sp_ViewVendas;
 
 -- == ViewContaCliente ==
 
-EXEC sp_ViewContaCliente 1
+CALL sp_ViewContaCliente (1);
 
 -- == ViewCliente
 
-EXEC sp_ViewCliente 1
+CALL sp_ViewCliente (1);

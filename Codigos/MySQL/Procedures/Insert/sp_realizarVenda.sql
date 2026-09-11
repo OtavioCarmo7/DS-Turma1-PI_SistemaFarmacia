@@ -1,125 +1,91 @@
 -- ================================================
 -- Stored Procedure: sp_realizarVenda
--- Descrição: Procedure para fazer o processo de venda com o cliente
--- Autor: Otávio Augusto Canola do Carmo
--- Data Criação: 15/07/2026
+-- DescriÃ§Ã£o: Procedure para fazer o processo de venda com o cliente
+-- Autor: OtÃ¡vio Augusto Canola do Carmo
+-- Data CriaÃ§Ã£o: 15/07/2026
 -- ================================================
 
--- Criação Procedure
-ALTER PROCEDURE sp_realizarVenda
-	
-	-- Variáveis
+DELIMITER //
+
+DROP PROCEDURE IF EXISTS sp_realizarVenda //
+
+-- CriaÃ§Ã£o Procedure
+CREATE PROCEDURE sp_realizarVenda (	
+	-- VariÃ¡veis
 
 	-- Tabela: Venda
-	@id_Cliente INT,
-	@id_Funcionario INT,
-	@nfe VARCHAR(100),
-	@canal_Venda VARCHAR(20),
+	IN p_id_Cliente INT,
+	IN p_id_Funcionario INT,
+	IN p_nfe VARCHAR(100),
+	IN p_canal_Venda VARCHAR(20),
 
 	-- Tabela: PagamentoVenda
-	@forma_Pagamento VARCHAR(9),
-	@valor_Pago DECIMAL (10,2),-- Quanto essa forma de pagamento supriu do valor da venda
-	@valor_Recebido DECIMAL(10,2), -- Só preenchido quando 'forma_Pagamento' = 'dinheiro'
-	@situacao VARCHAR(8),
+	IN p_forma_Pagamento VARCHAR(9),
+	IN p_valor_Pago DECIMAL(10,2),
+	IN p_valor_Recebido DECIMAL(10,2),
+	IN p_situacao VARCHAR(8),
 
 	-- Tabela: ProdutoVenda
-	@itens Tbl_Type_ProdutoVenda READONLY -- Aqui entra na lista inteira que criamos no banco
-
-AS
+	IN p_itens LONGTEXT -- Array de JSON contendo os produtos
+)
+    
 BEGIN
+	DECLARE v_id_Venda INT;
+	DECLARE v_valor_Total DECIMAL(10,2);
+	DECLARE v_troco DECIMAL(10,2) DEFAULT NULL;
 
-	-- SET NOCOUNT ON:
-    -- Evita mensagens automáticas "X linhas afetadas"
-    -- Ajuda em procedures (menos “poluição” no resultado)
-	SET NOCOUNT ON;
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
 
-	-- Começo o caminho TRY
-	BEGIN TRY 
-		
-		-- Inicia o ambiente de testes
-		BEGIN TRAN
-		
-		-- Cria a variável do último id adicionado da Venda
-		DECLARE @id_Venda INT;
+	-- ValidaÃ§Ã£o para pagamentos em dinheiro
+	IF LOWER(p_forma_Pagamento) = 'dinheiro' THEN
+		IF p_valor_Recebido IS NULL OR p_valor_Recebido < p_valor_Pago THEN
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Valor recebido em dinheiro nÃ£o pode ser menor que o valor pago.';
+		END IF;
+		SET v_troco = p_valor_Recebido - p_valor_Pago;
+	END IF;
 
-		-- Delarando variáveis que vamos utilizar para guardar as informações recebidas nas procedures
-		DECLARE  @id_Produto_Venda INT,
-				 @valor_Total DECIMAL(10,2);
+	START TRANSACTION;
 
-		-- Pega as informações da variável da tabela Type_ProdutoVenda e coloca na variável @valor_Total
-		SELECT @valor_Total = SUM(qnt * valor_Unitario) FROM @itens;
+	-- Calcula o valor total extraindo os itens diretamente do JSON
+	SELECT SUM(qnt * valor_Unitario) INTO v_valor_Total
+	FROM JSON_TABLE(
+    p_itens,
+    '$[*]' COLUMNS (
+        qnt INT PATH '$.qnt',
+        valor_Unitario DECIMAL(8,2) PATH '$.valor_Unitario'
+    )
+) AS jt;
+	-- Insere a venda
+	INSERT INTO Tbl_Venda (id_Cliente, id_Funcionario, nfe, valor, data_Venda, canal_Venda) 
+	VALUES (p_id_Cliente, p_id_Funcionario, p_nfe, v_valor_Total, NOW(), p_canal_Venda);
 
-		-- Faz a inserção da Venda na tabela Venda
-		INSERT INTO Tbl_Venda(id_Cliente, id_Funcionario, nfe, valor, data_Venda, canal_Venda) VALUES
-		(@id_Cliente, @id_Funcionario, @nfe,  @valor_Total, GETDATE(), @canal_Venda);
+	SET v_id_Venda = LAST_INSERT_ID();
 
-		-- Define o valor do último id na variável que criamos na variável
-		SET @id_Venda = SCOPE_IDENTITY();
+	-- Insere todos os itens recebidos no JSON em lote
+	INSERT INTO Tbl_Produto_Venda (id_Venda, id_Produto, qnt, valor_Unitario)
+	SELECT 
+		v_id_Venda, 
+		jt.id_Produto, 
+		jt.qnt, 
+		jt.valor_Unitario
+	FROM JSON_TABLE(
+		p_itens,
+		'$[*]' COLUMNS (
+			id_Produto INT PATH '$.id_Produto',
+			qnt INT PATH '$.qnt',
+			valor_Unitario DECIMAL(8,2) PATH '$.valor_Unitario'
+		)
+	) AS jt;
 
-		/* Cria uma nova tabela temporária física no banco de dados 
-		chamada #ItensTemp e insere nela todos os dados retornados pelo SELECT */
-		SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS linha,
-			id_Produto, qnt, valor_Unitario -- Gera um número para cada linha da tabela, conforme elas vem
-		INTO #ItensTemp -- Copia os itens da lista recebida em @itens para dentro dessa tabela temporária 
-		FROM @itens -- Em qual lugar vai fazer a busca
+	-- Registra as informaÃ§Ãµes de pagamento
+	INSERT INTO Tbl_Pagamento_Venda (id_Venda, forma_Pagamento, valor_Pago, valor_Recebido, troco, situacao) 
+	VALUES (v_id_Venda, p_forma_Pagamento, p_valor_Pago, p_valor_Recebido, v_troco, p_situacao);
 
-		-- Cria uma variável que contem o número total de linhas da tabela
-		DECLARE @totalLinhas INT = (SELECT COUNT(*) FROM #ItensTemp);
-		
-		-- Cria uma variável que inicia o ciclo de repetição
-		DECLARE @linhaAtual INT = 1;
+	COMMIT;
+END //
 
-		-- Delarando variáveis que vamos utilizar para guardar as informações recebidas nas procedures
-		DECLARE 
-			@id_Produto INT,
-			@qnt INT,
-			@valor_Unitario DECIMAL(8,2)
-
-			-- Inicia o loop para ler todas as linhas da tabela temporária
-			WHILE @linhaAtual <= @totalLinhas
-			BEGIN
-				SELECT 
-					@id_Produto = id_produto,
-					@qnt = qnt,
-					@valor_Unitario = valor_Unitario
-				FROM #ItensTemp
-				WHERE linha = @linhaAtual
-
-				-- Insert dos produtos comprados pelo cliente
-				INSERT INTO Tbl_Produto_Venda (id_Venda, id_Produto, qnt, valor_Unitario) VALUES
-					(@id_Venda, @id_Produto, @qnt, @valor_Unitario);
-					
-				-- Adiciona 1 índice à variável para continuar o loop
-				SET @linhaAtual += 1;
-			END
-
-			-- Deleta a tabela temporária das variáveis
-			DROP TABLE #ItensTemp;
-
-			
-			-- Procedure que adiciona as informações de pagamento da venda
-			INSERT INTO Tbl_Pagamento_Venda (id_Venda, forma_Pagamento, valor_Pago, valor_Recebido, situacao) VALUES
-				(@id_Venda, @forma_Pagamento, @valor_Pago, @valor_Recebido, @situacao);
-
-			PRINT 'Venda realizada com sucesso!';
-
-			-- Commita o processo para o banco verdadeira, e não apenas na fase de teste
-			COMMIT TRAN;
-
-	END TRY
-
-	-- Começo CATCH
-	BEGIN CATCH
-
-		IF OBJECT_ID('tempdb..#ItensTemp') IS NOT NULL
-			DROP TABLE #ItensTemp;
-		
-		IF @@TRANCOUNT > 0 
-			ROLLBACK TRAN
-
-		DECLARE @Mensagem NVARCHAR(4000) = ERROR_MESSAGE();
-
-		RAISERROR(@Mensagem, 16, 1)
-	END CATCH
-END
-GO
+DELIMITER ;

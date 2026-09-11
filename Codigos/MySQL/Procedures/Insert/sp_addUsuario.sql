@@ -5,6 +5,9 @@
 -- Data Criação: 28/06/2026
 -- ================================================
 
+-- Entra no banco de dados
+USE dbsannus
+
 -- Altera temporariamente o caractere finalizador de comandos do MySQL (que padrão é ;) para //
 DELIMITER //
 
