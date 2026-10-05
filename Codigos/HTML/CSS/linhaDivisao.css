@@ -2,7 +2,7 @@
 
 .linha{
     display: flex;
-    background-color: rgb(166 188 255);
+    background-color: var(--corFundo);
     width: 100%;
-    padding: 0.0;
+    padding: -9.0px;
 }
