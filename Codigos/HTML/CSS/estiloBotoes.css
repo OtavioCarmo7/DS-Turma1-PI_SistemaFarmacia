@@ -1,0 +1,19 @@
+@import "estiloPadrao.css"; 
+
+.botoes{
+    color: var(--branco);
+    background-color: var(--azul);
+    border-radius: var(--arredondar);
+    font-size: var(--fonteBotao);
+    font-weight: var(--negrito);
+    font-family: var(--fontStyle);
+    width: var(--widgth);
+    height: var(--height);
+    border: var(--borda);
+}
+
+.display{
+    background-color: var(--corFundo);
+    width: var(--widgthDisplay);
+    height: var(--heightDisplay);
+}

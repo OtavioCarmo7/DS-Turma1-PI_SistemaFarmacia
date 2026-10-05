@@ -1,0 +1,22 @@
+:root{
+
+    /* Variáveis de Estilo Botão */
+    --azul: rgb(102, 181, 255);
+    --branco: white;
+    --arredondar: 15px;
+    --fonteBotao: 1rem;
+    --fontStyle: arial;
+    --negrito: bold;
+    --width: 100%;
+    --height: 100%;
+    --borda: none;
+
+    /* Variáveis de Estilo Display */
+    --corFundo: rgb(116, 188, 255);
+    --corLetra: white;
+    --arredondar: 15px;
+    --widthDisplay: 1%;
+    --heightDisplay: 1%;
+    --borda: none
+
+}

@@ -1,0 +1,8 @@
+@import url(../CSS/estiloPadrao.css);
+
+.linha{
+    display: flex;
+    background-color: rgb(166 188 255);
+    width: 100%;
+    padding: 0.0;
+}

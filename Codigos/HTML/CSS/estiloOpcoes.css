@@ -1,0 +1,25 @@
+@import "estiloPadrao.css"; 
+
+main{
+    height: 100%;
+}
+
+.colunaOpcoes{
+    background-color: var(--azul);
+    
+}
+
+.cabecalhoOpcoes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.opcao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    height: 6.5rem;
+    background-color: rgb(166 188 255);
+}
