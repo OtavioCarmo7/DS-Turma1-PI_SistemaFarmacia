@@ -1,21 +1,22 @@
-@import "estiloPadrao.css"; 
+@import "estiloPadrao.css";
 
-main{
+main {
     height: 100%;
 }
 
-.colunaOpcoes{
+.colunaOpcoes {
     background-color: var(--azul);
-    
+    height: 100vh; /* Faz ocupar */
 }
 
-.cabecalhoOpcoes{
+.cabecalhoOpcoes {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
-.opcao{
+.opcao {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,4 +24,5 @@ main{
     height: 6.5rem;
     background-color: var(--corFundo);
     margin: 10px;
+    padding: 60px !important;
 }

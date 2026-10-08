@@ -4,5 +4,5 @@
     display: flex;
     background-color: var(--corFundo);
     width: 100%;
-    padding: -2.0px;
+    height: 2px;
 }
