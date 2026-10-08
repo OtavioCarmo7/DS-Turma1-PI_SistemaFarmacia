@@ -22,4 +22,5 @@ main{
     border-radius: 20px;
     height: 6.5rem;
     background-color: var(--corFundo);
+    margin: 10px;
 }
