@@ -1,0 +1,93 @@
+/* Guarda variáveis globais */
+:root {
+    --branco: white;
+    --azulFundoMenu: rgb(102, 181, 255);
+    --azulFundoOpcao: #92C9FC;
+    --corFundoBotao: rgb(229, 229, 229);
+    --corLetraBotao: white;
+    --corBorderForm: lightgray;
+}
+
+/* Tira as margin e paddings que o navegador coloca automaticamente */
+html,
+body {
+    margin: 0; 
+    padding: 0;
+    height: 100vh; /* Faz ocupar toda a página verticalmente */
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Layout Principal da Página */
+.pagina-principal {
+    display: grid;
+    grid-template-columns: 300px 1fr; /* cria duas colunas com esses tamanhos */
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Coluna Lateral em Flexbox para organizar topo, meio e rodapé perfeitamente */
+.coluna-lateral {
+    background-color: var(--azulFundoMenu);
+    height: 120vh;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex; /* Deixa os elementos flexíveis */
+    flex-direction: column; /* Coloca os elementos um abaixo do outro */
+    justify-content: space-between; /* Empurra o topo para cima e o botão 'Sair' para baixo */
+}
+
+/* Cabeçalho do usuário limpo com Flexbox, alinha a foto do avatar e os textos do usuário (Nome e Cargo) lado a lado */
+.cabecalho-usuario {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icon-usuario {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0;
+}
+
+.info-usuario {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Grid Principal das Opções do Menu (2 colunas) */
+.layout-principal {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /*Cria duas colunas de tamanhos iguais para os botões do menu ficarem perfeitamente lado a lado.*/
+    gap: 12px; /* Cria um espaçamento seguro e consistente entre os card */
+    justify-items: center; 
+    align-items: center;
+    flex-grow: 1; /* Ocupa o espaço intermediário */
+    padding: 10px 0;
+}
+
+.areaOpcao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.quadrado-opcao {
+    border-radius: 12px;
+    width: 6rem;
+    height: 6rem;
+    background-color: var(--azulFundoOpcao);
+    margin-bottom: 6px;
+}
+
+/* Caso especial para o botão Sair na base */
+.area-sair {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3); /* Linha divisória limpa integrada */
+}

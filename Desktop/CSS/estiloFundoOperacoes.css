@@ -1,0 +1,10 @@
+
+.fundoOperacao{
+    border: var(--bordaOperacao);
+    border-color: var(--borderColorOperacao);
+    border-radius: var(--borderRadiusOperacao);
+    width: var(--widthOperacao);
+    height: var(--heigthOperacao);
+    margin: var(--marginOperacao);
+    margin-right: var(--marginRight);
+}
