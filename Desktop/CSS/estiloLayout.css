@@ -1,0 +1,134 @@
+/* Layout Principal da Página que une as duas colunas */
+.pagina-principal {
+    transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 25% 1fr;
+    /* cria duas colunas com esses tamanhos */
+    height: 100vh;
+    gap: 45px;
+    width: 100%;
+}
+
+.pagina-principal-escuro {
+    /* Define que qualquer mudança nas cores ou fundo levará 0.4 segundos de forma suave */
+    transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 25% 1fr;
+    /* cria duas colunas com esses tamanhos */
+    height: 100vh;
+    gap: 45px;
+    width: 100%;
+    background-color: var(--cinza);
+}
+
+
+/* Coluna Lateral em Flexbox para organizar topo, meio e rodapé perfeitamente */
+.coluna-lateral {
+    transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+    background-color: var(--azulFundoMenuOpcao);
+    min-height: 120vh;
+    height: auto;
+    padding: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    /* Deixa os elementos flexíveis */
+    flex-direction: column;
+    /* Coloca os elementos um abaixo do outro */
+    justify-content: space-between;
+    /* Empurra o topo para cima e o botão 'Sair' para baixo */
+}
+
+.coluna-lateral-escuro {
+    /* Define que qualquer mudança nas cores ou fundo levará 0.4 segundos de forma suave */
+    transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+    background-color: var(--pretoFundoMenuOpcaoEscuro);
+    min-height: 120vh;
+    height: auto;
+    padding: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    /* Deixa os elementos flexíveis */
+    flex-direction: column;
+    /* Coloca os elementos um abaixo do outro */
+    justify-content: space-between;
+    /* Empurra o topo para cima e o botão 'Sair' para baixo */
+}
+
+/* Cabeçalho do usuário limpo com Flexbox, alinha a foto do avatar e os textos do usuário (Nome e Cargo) lado a lado */
+.cabecalho-usuario {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.coluna-principal {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1.5rem;
+    align-items: center;
+    border: 3px solid;
+    border-radius: 50px;
+    border-color: var(--corBorderForm);
+    width: 65vw;
+    max-width: 1200px;
+    height: auto;
+    min-height: 90vh;
+    margin: auto;
+}
+
+.coluna-principal-escuro {
+    /* Define que qualquer mudança nas cores ou fundo levará 0.4 segundos de forma suave */
+    transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+    background-color: (--cinza);
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1.5rem;
+    align-items: center;
+    border: 3px solid;
+    border-radius: 50px;
+    border-color: var(--corBorderFormEscuro);
+    color: var(--branco);
+    width: 65vw;
+    max-width: 1200px;
+    height: auto;
+    min-height: 90vh;
+    margin: auto;
+}
+
+/* Grid Principal das Opções do Menu (2 colunas) */
+.layout-opcoes {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    /*Cria duas colunas de tamanhos iguais para os botões do menu ficarem perfeitamente lado a lado.*/
+    gap: 2rem;
+    /* Cria um espaçamento seguro e consistente entre os card */
+    justify-items: center;
+    align-items: center;
+    flex-grow: 1;
+    /* Ocupa o espaço intermediário */
+    padding: 10px 0;
+}
+
+/* Caso especial para o botão Sair na base */
+.area-sair {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    /* Linha divisória limpa integrada */
+}
+
+.areaOpcao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}

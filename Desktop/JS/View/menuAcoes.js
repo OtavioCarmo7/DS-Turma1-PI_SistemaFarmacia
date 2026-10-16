@@ -1,9 +1,11 @@
 class MenuAcoes extends HTMLElement{
     connectedCallback(){
         this.innerHTML = 
-        `  <div class="fundoOperacao
-            textoCentro min-vh-100">
-                Oi
+        `  <div class="coluna-principal" id="colunaAcoes">
+                Oi 
+                <br>
+                asjdoasjdoai
+                <br> 
             </div>
         </div>`;
     }

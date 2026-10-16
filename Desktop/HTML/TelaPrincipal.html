@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" id="html" class="">
 
 <head>
     <link rel="stylesheet" href="../CSS/estiloPadrao.css" defer>
-    <link rel="stylesheet" href="../CSS/estiloOpcoes.css">
-    <link rel="stylesheet" href="../CSS/linhaDivisao.css">
-    <link rel="stylesheet" href="../CSS/estiloTexto.css">
-    <link rel="stylesheet" href="../CSS/estiloFundoOperacoes.css">
-    <link rel="stylesheet" href="../CSS/estiloComponentesCentro.css">
+    <link rel="stylesheet" href="../CSS/estiloComponentes.css">
+    <link rel="stylesheet" href="../CSS/estiloLayout.css">
 
-    <script src="../JS/menuAcoes.js"></script>
-    <script src="../JS/menuOpcoes.js"></script>
+    <script src="../JS/View/menuAcoes.js"></script>
+    <script src="../JS/View/menuOpcoes.js"></script>
+    <script src="../JS/View/fundoEscuro.js" defer></script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,13 +21,13 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body id="body" class="">
 
-    <div class="pagina-principal">
+    <div class="pagina-principal" id="paginaPrincipal">
 
         <carregar-opcoes></carregar-opcoes>
-
         <carregar-acoes></carregar-acoes>
+        <!-- <button id="mudaCor">oi</button> -->
 
     </div>
 </body>

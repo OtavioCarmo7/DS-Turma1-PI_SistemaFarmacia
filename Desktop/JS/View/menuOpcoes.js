@@ -1,9 +1,9 @@
 class CarregarOpcoes extends HTMLElement{
     connectedCallback(){
         this.innerHTML = `
-        <aside class="coluna-lateral">
+        <aside class="coluna-lateral" id="ColunaOpcoes">
             <header class="cabecalho-usuario">
-                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle icon-usuario" alt="Avatar" />
+                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle icon-usuario" alt="Foto de perfil" title="Sua foto de perfil"/>
                 <div class="info-usuario">
                     <h2 class="nomeUsuario">Nome Usuario</h2>
                     <h6 class="cargoUsuario">Cargo</h6>
@@ -13,40 +13,40 @@ class CarregarOpcoes extends HTMLElement{
             <div class="linha">
             <p></p></div>
 
-            <nav class="layout-principal">
-                <div class="areaOpcao">
-                    <div class="quadrado-opcao"></div>
+            <nav class="layout-opcoes" id="menuOpcoes">
+                <div class="areaOpcao" >
+                    <a href="#" class="quadrado-opcao" title="Botão que direciona para a página de realizar vendas" id="fundoRealizarVenda"></a>
                     <a href="#" id="realizarVenda">Realizar Venda</a>
                 </div>
 
                 <div class="areaOpcao">
-                    <div class="quadrado-opcao"></div>
+                    <a href="#" class="quadrado-opcao" title="Botão que direciona para a página de verificar clientes" id="fundoClientes"></a>
                     <a href="#" class="tipoOpcaoDireita">Clientes</a>
                 </div>
 
                 <div class="areaOpcao">
-                    <div class="quadrado-opcao"></div>
+                    <a href="#" class="quadrado-opcao" title="Botão que direciona para a página de verificar estoque" id="fundoEstoque"></a>
                     <a href="#" class="tipoOpcaoEsquerda">Estoque</a>
                 </div>
 
                 <div class="areaOpcao">
-                    <div class="quadrado-opcao"></div>
+                    <a href="#" class="quadrado-opcao" title="Botão que direciona para a página de verificar o histórico" id="fundoHistorico"></a>
                     <a href="#" class="tipoOpcaoDireita">Histórico</a>
                 </div>
 
                 <div class="areaOpcao">
-                    <div class="quadrado-opcao"></div>
+                    <a href="#" class="quadrado-opcao" title="Botão que direciona para a página de configurações" id="fundoConfiguracoes"></a>
                     <a href="#" id="Configuracoes">Configurações</a>
                 </div>
 
                 <div class="areaOpcao">
-                    <div class="quadrado-opcao"></div>
+                    <a href="#"  class="quadrado-opcao" title="Botão que direciona para a página de área de controle" id="fundoAreaControle"></a>
                     <a href="#" id="areaControle">Área de Controle</a>
                 </div>
             </nav>
 
             <div class="area-sair">
-                <div class="quadrado-opcao" style="width: 4rem; height: 4rem;"></div>
+                <a href="#" class="quadrado-opcao" title="Botão que sai conta" id="fundoSair"></a>
                 <a href="#" id="sair">Sair</a>
             </div>
         </aside>`;
