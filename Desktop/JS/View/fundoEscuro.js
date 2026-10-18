@@ -1,5 +1,3 @@
-const botao = document.getElementById("mudaCor");
-
 const body = document.getElementById("body")
 
 const html = document.getElementById("html")
@@ -19,27 +17,36 @@ const botaoAreaControle = document.getElementById("fundoAreaControle");
 const botaoSair = document.getElementById("fundoSair");
 
 
-botao.addEventListener("click", function () {
-    // body.style.backgroundColor = gray
-
-    html.classList.toggle("fundo-escuro")
+function trocaCor(){
     
-    paginaPrincipal.classList.toggle("pagina-principal-escuro")
 
-    menuOpcoes.classList.toggle("coluna-lateral-escuro")
+    document.addEventListener("click", (event)=> {
 
-    menuAcoes.classList.toggle("coluna-principal-escuro")
+    const botao = event.target.closest("#botaoFundoCor");
 
-    botaoRealizarVenda.classList.toggle("quadrado-opcaoEscuro");
-    botaoClientes.classList.toggle("quadrado-opcaoEscuro");
-    botaoEstoque.classList.toggle("quadrado-opcaoEscuro");
-    botaoHistorico.classList.toggle("quadrado-opcaoEscuro");
-    botaoConfiguracoes.classList.toggle("quadrado-opcaoEscuro");
-    botaoAreaControle.classList.toggle("quadrado-opcaoEscuro");
-    botaoSair.classList.toggle("quadrado-opcaoEscuro");
+        if (botao) {
+    
+            html.classList.toggle("fundo-escuro")
+    
+            paginaPrincipal.classList.toggle("pagina-principal-escuro")
+    
+            menuOpcoes.classList.toggle("coluna-lateral-escuro")
+    
+            menuAcoes.classList.toggle("coluna-principal-escuro")
+    
+            botaoRealizarVenda.classList.toggle("quadrado-opcaoEscuro");
+            botaoClientes.classList.toggle("quadrado-opcaoEscuro");
+            botaoEstoque.classList.toggle("quadrado-opcaoEscuro");
+            botaoHistorico.classList.toggle("quadrado-opcaoEscuro");
+            botaoConfiguracoes.classList.toggle("quadrado-opcaoEscuro");
+            botaoAreaControle.classList.toggle("quadrado-opcaoEscuro");
+            botaoSair.classList.toggle("quadrado-opcaoEscuro");
+    
+        }
+    }
+)}
 
-}
-);
+trocaCor();
 
 
 

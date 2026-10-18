@@ -132,3 +132,10 @@
     align-items: center;
     text-align: center;
 }
+
+.opcoes-Configuracoes {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 15%;
+}

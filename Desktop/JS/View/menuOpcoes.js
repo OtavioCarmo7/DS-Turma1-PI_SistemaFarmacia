@@ -26,7 +26,7 @@ class CarregarOpcoes extends HTMLElement{
 
                 <div class="areaOpcao">
                     <a href="#" class="quadrado-opcao" title="Botão que direciona para a página de verificar estoque" id="fundoEstoque"></a>
-                    <a href="#" class="tipoOpcaoEsquerda">Estoque</a>
+                    <a href="#" class="tipoOpcaoEsquerda letra-grande">Estoque</a>
                 </div>
 
                 <div class="areaOpcao">
@@ -35,8 +35,8 @@ class CarregarOpcoes extends HTMLElement{
                 </div>
 
                 <div class="areaOpcao">
-                    <a href="#" class="quadrado-opcao" title="Botão que direciona para a página de configurações" id="fundoConfiguracoes"></a>
-                    <a href="#" id="Configuracoes">Configurações</a>
+                    <a  class="quadrado-opcao" title="Botão que direciona para a página de configurações" id="fundoConfiguracoes"></a>
+                    <a  id="Configuracoes">Configurações</a>
                 </div>
 
                 <div class="areaOpcao">

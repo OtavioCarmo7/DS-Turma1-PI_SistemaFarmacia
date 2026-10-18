@@ -36,6 +36,10 @@ body {
     background-color: var(--cinza);
 }
 
+.negrito {
+    font-weight: bold;
+}
+
 
 
 

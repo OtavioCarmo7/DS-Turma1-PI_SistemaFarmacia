@@ -1,0 +1,35 @@
+.layout-opcoes .letra-grande {
+    font-size: 1.5rem;
+}
+
+.layout-opcoes .letra-pequena {
+    font-size: 0.9rem;
+    max-width: 100%;
+}
+
+.nomeUsuario-grande {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--corFundoBotaoOpcao);
+    margin: 0;
+}
+
+.nomeUsuario-pequeno {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: var(--corFundoBotaoOpcao);
+    margin: 0;
+}
+
+
+.cargoUsuario-grande {
+    font-size: 1.2rem;
+    color: var(--corFundoBotaoOpcao);
+    margin: 0;
+}
+
+.cargoUsuario-pequeno {
+    font-size: 0.95rem;
+    color: var(--corFundoBotaoOpcao);
+    margin: 0;
+}

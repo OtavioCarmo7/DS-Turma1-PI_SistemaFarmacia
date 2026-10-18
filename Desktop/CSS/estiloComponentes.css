@@ -25,20 +25,19 @@
 
 /* Grid Principal das Opções do Menu (2 colunas) */
 .layout-opcoes a {
-    font-size: 0.9rem;
+    font-size: 1.3rem;
     max-width: 100%;
-    text-overflow: ellipsis;
 }
 
 .nomeUsuario {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: bold;
     color: var(--corFundoBotaoOpcao);
     margin: 0;
 }
 
 .cargoUsuario {
-    font-size: 0.95rem;
+    font-size: 1.2rem;
     color: var(--corFundoBotaoOpcao);
     margin: 0;
 }
@@ -79,4 +78,8 @@
     width: 6rem;
     height: 6rem;
     background-color: var(--corFundoBotaoOpcaoEscuro);
+}
+
+.botaoFundo {
+    width: 20rem;
 }
