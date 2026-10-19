@@ -21,7 +21,7 @@ class CarregarOpcoes extends HTMLElement{
 
                 <div class="areaOpcao">
                     <a href="#" class="quadrado-opcao" title="Botão que direciona para a página de verificar clientes" id="fundoClientes"></a>
-                    <a href="#" class="tipoOpcaoDireita">Clientes</a>
+                    <a href="#" class="tipoOpcaoDireita letra-p">Clientes</a>
                 </div>
 
                 <div class="areaOpcao">

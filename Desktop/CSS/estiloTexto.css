@@ -1,9 +1,9 @@
-.layout-opcoes .letra-grande {
+.letra-grande {
     font-size: 1.5rem;
 }
 
 .layout-opcoes .letra-pequena {
-    font-size: 0.9rem;
+    font-size: 0rem;
     max-width: 100%;
 }
 
@@ -16,14 +16,14 @@
 
 }
 
-.nomeUsuario .letra-grande {
+.letra-grande {
     font-size: 1.3rem;
     font-weight: bold;
     color: var(--corFundoBotaoOpcao);
     margin: 0;
 }
 
-.nomeUsuario .letra-pequena {
+.letra-pequena {
     font-size: 0.95rem;
     font-weight: bold;
     color: var(--corFundoBotaoOpcao);

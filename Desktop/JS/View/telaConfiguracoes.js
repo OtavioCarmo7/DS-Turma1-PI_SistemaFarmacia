@@ -15,9 +15,9 @@ const telaConfiguracoes = `
                     <h4 class="">Tamanho de Texto</h4>
 
                     <div class="botoes-tamanho">
-                        <button type="button" class="btn-outline theme-accent">Pequena</button>
+                        <button type="button" class="btn-outline theme-accent" id="btnPequeno">Pequena</button>
 
-                        <button type="button" class="btn-outline theme-success">Normal</button>
+                        <button type="button" class="btn-outline theme-success" id="btnNormal">Normal</button>
 
                         <button type="button" class="btn-outline theme-danger" id="btnGrande">Grande</button>
                     </div>

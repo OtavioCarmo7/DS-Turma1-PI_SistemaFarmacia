@@ -4,6 +4,57 @@
         display: grid;
         align-items: center;
         grid-template-columns: 25% 1fr;
+        height: 100vh;
+        gap: 45px;
+        width: 100%;
+    }
+
+    .pagina-principal-escuro {
+        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 25% 1fr;
+        height: 100vh;
+        gap: 45px;
+        width: 100%;
+        background-color: var(--cinza);
+    }
+
+
+    .coluna-lateral {
+        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+        background-color: var(--azulFundoMenuOpcao);
+        min-height: 120vh;
+        height: auto;
+        padding: 2rem;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .coluna-lateral-escuro {
+        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+        background-color: var(--pretoFundoMenuOpcaoEscuro);
+        min-height: 120vh;
+        height: auto;
+        padding: 2rem;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+}
+
+@media (max-width: 1920px) {
+
+    /* Layout Principal da Página que une as duas colunas */
+    .pagina-principal {
+        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 20% 1fr;
         /* cria duas colunas com esses tamanhos */
         height: 100vh;
         gap: 45px;
@@ -15,7 +66,7 @@
         transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
         display: grid;
         align-items: center;
-        grid-template-columns: 25% 1fr;
+        grid-template-columns: 20% 1fr;
         /* cria duas colunas com esses tamanhos */
         height: 100vh;
         gap: 45px;
@@ -55,7 +106,4 @@
         justify-content: space-between;
         /* Empurra o topo para cima e o botão 'Sair' para baixo */
     }
-
 }
-
-@media (max-width: 1024px) {}
