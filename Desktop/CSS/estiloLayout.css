@@ -137,5 +137,11 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding-top: 15%;
+    padding-top: 5%;
+}
+
+.botoes-tamanho {
+    display: flex;
+    padding-top: 5%;
+    gap: 20px;
 }

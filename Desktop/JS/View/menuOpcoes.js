@@ -5,8 +5,8 @@ class CarregarOpcoes extends HTMLElement{
             <header class="cabecalho-usuario">
                 <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle icon-usuario" alt="Foto de perfil" title="Sua foto de perfil"/>
                 <div class="info-usuario">
-                    <h2 class="nomeUsuario">Nome Usuario</h2>
-                    <h6 class="cargoUsuario">Cargo</h6>
+                    <h2 class="nomeUsuario" id="nomeUsuario">Nome Usuario</h2>
+                    <h6 class="cargoUsuario" id="nomeCargo">Cargo</h6>
                 </div>
             </header>
 
@@ -26,7 +26,7 @@ class CarregarOpcoes extends HTMLElement{
 
                 <div class="areaOpcao">
                     <a href="#" class="quadrado-opcao" title="Botão que direciona para a página de verificar estoque" id="fundoEstoque"></a>
-                    <a href="#" class="tipoOpcaoEsquerda letra-grande">Estoque</a>
+                    <a href="#" class="tipoOpcaoEsquerda ">Estoque</a>
                 </div>
 
                 <div class="areaOpcao">

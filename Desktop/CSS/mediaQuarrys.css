@@ -1,0 +1,61 @@
+@media (max-width: 1366px) {
+    .pagina-principal {
+        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 25% 1fr;
+        /* cria duas colunas com esses tamanhos */
+        height: 100vh;
+        gap: 45px;
+        width: 100%;
+    }
+
+    .pagina-principal-escuro {
+        /* Define que qualquer mudança nas cores ou fundo levará 0.4 segundos de forma suave */
+        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 25% 1fr;
+        /* cria duas colunas com esses tamanhos */
+        height: 100vh;
+        gap: 45px;
+        width: 100%;
+        background-color: var(--cinza);
+    }
+
+
+    /* Coluna Lateral em Flexbox para organizar topo, meio e rodapé perfeitamente */
+    .coluna-lateral {
+        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+        background-color: var(--azulFundoMenuOpcao);
+        min-height: 120vh;
+        height: auto;
+        padding: 2rem;
+        box-sizing: border-box;
+        display: flex;
+        /* Deixa os elementos flexíveis */
+        flex-direction: column;
+        /* Coloca os elementos um abaixo do outro */
+        justify-content: space-between;
+        /* Empurra o topo para cima e o botão 'Sair' para baixo */
+    }
+
+    .coluna-lateral-escuro {
+        /* Define que qualquer mudança nas cores ou fundo levará 0.4 segundos de forma suave */
+        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+        background-color: var(--pretoFundoMenuOpcaoEscuro);
+        min-height: 120vh;
+        height: auto;
+        padding: 2rem;
+        box-sizing: border-box;
+        display: flex;
+        /* Deixa os elementos flexíveis */
+        flex-direction: column;
+        /* Coloca os elementos um abaixo do outro */
+        justify-content: space-between;
+        /* Empurra o topo para cima e o botão 'Sair' para baixo */
+    }
+
+}
+
+@media (max-width: 1024px) {}

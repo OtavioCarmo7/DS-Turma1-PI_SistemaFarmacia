@@ -7,14 +7,23 @@
     max-width: 100%;
 }
 
-.nomeUsuario-grande {
+.coluna-principal .letra-grande {
+    font-size: 45px;
+}
+
+.coluna-principal .letra-pequena {
+    font-size: 12px;
+
+}
+
+.nomeUsuario .letra-grande {
     font-size: 1.3rem;
     font-weight: bold;
     color: var(--corFundoBotaoOpcao);
     margin: 0;
 }
 
-.nomeUsuario-pequeno {
+.nomeUsuario .letra-pequena {
     font-size: 0.95rem;
     font-weight: bold;
     color: var(--corFundoBotaoOpcao);
