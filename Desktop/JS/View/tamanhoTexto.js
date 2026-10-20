@@ -1,62 +1,62 @@
-const botaoTextoGrande = document.getElementById("btnGrande");
+function mudarTamanhoPequeno(elemento) {
+    elemento.classList.remove("letra-grande");
+    elemento.classList.add("letra-pequena");
+}
 
-const botaoTextoNormal = document.getElementById("btnNormal");
+document.addEventListener("click", (event) => {
+    // Colocar texto da página-principal
+    const vetorTextosOpcoes = document.querySelectorAll(".Opcao")
 
-const botaoTextoPequeno = "#btnPequeno";
+    const nomeUsuario = document.getElementById("nomeUsuario")
+    const cargoUsuario = document.getElementById("usuarioCargo")
 
-const vetorTextos = [
-    document.getElementById("fundoRealizarVenda"),
-    document.getElementById("fundoClientes"),
-    document.getElementById("fundoEstoque"),
-    document.getElementById("fundoHistorico"),
-    document.getElementById("fundoConfiguracoes"),
-    document.getElementById("fundoAreaControle"),
-    document.getElementById("fundoSair"),
-    document.getElementById("nomeUsuario"),
-    document.getElementById("nomeCargo")
-];
-
-const variaveisTamanho = ["letra-pequena", "letra-grande"]
-
-function textoPequeno(event) {
     const botaoPequeno = event.target.closest("#btnPequeno");
-
-    if (botaoPequeno) {
-        vetorTextos.forEach(texto => {
-            texto.classList.remove(variaveisTamanho[1]);
-            texto.classList.add(variaveisTamanho[0]);
-        });
-    }
-}
-
-function textoNormal(event) {
-
     const botaoPadrao = event.target.closest("#btnNormal");
-
-    if (botaoPadrao) {
-        vetorTextos.forEach(texto =>{
-            texto.classList.remove(variaveisTamanho[0]);
-            texto.classList.remove(variaveisTamanho[1]);
-        });
-    }
-}
-
-function textoGrande(event) {
-
     const botaoGrande = event.target.closest("#btnGrande");
 
-    if (botaoGrande) {
-        vetorTextos.forEach(texto => {
-            texto.classList.toggle.remove(variaveisTamanho[0]);
-            texto.classList.toggle.add(variaveisTamanho[1]);
+    if (botaoPequeno) {
+
+        vetorTextosOpcoes.forEach(opcao => {
+            opcao.classList.remove("letra-grande")
+            opcao.classList.add("letra-pequena")
         });
+
+
+        nomeUsuario.classList.remove("letra-grande");
+        cargoUsuario.classList.remove("letra-grande");
+
+        nomeUsuario.classList.add("letra-pequena");
+        cargoUsuario.classList.add("letra-pequena");
+
     }
-}
 
-document.addEventListener("click", () => {
-    textoGrande();
-    textoPequeno();
-    textoNormal();
+    else if (botaoPadrao) {
 
+        vetorTextosOpcoes.forEach(opcao => {
+            opcao.classList.remove("letra-pequena");
+            opcao.classList.remove("letra-grande");
+        });
+
+        nomeUsuario.classList.remove("letra-grande");
+        cargoUsuario.classList.remove("letra-grande");
+
+        nomeUsuario.classList.remove("letra-pequena");
+        cargoUsuario.classList.remove("letra-pequena");
+    }
+
+    if (botaoGrande) {
+
+        vetorTextosOpcoes.forEach(opcao => {
+            opcao.classList.remove("letra-pequena")
+            opcao.classList.add("letra-grande")
+        });
+
+        nomeUsuario.classList.remove("letra-pequena");
+        cargoUsuario.classList.remove("letra-pequena");
+
+        nomeUsuario.classList.add("letra-grande");
+        cargoUsuario.classList.add("letra-grande");
+
+    }
 });
 

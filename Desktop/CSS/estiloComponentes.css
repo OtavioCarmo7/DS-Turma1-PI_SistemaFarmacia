@@ -2,7 +2,7 @@
 .layout-opcoes a,
 .area-sair a {
     transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     /*rem se adapta melhor caso o usuário mude o zoom da tela do navegador*/
     font-weight: bold;
     text-decoration: none;
@@ -25,7 +25,7 @@
 
 /* Grid Principal das Opções do Menu (2 colunas) */
 .layout-opcoes a {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     max-width: 100%;
 }
 

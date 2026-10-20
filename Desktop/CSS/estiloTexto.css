@@ -1,9 +1,21 @@
-.letra-grande {
+.layout-opcoes .letra-grande {
     font-size: 1.5rem;
+    max-width: 100%;
+
 }
 
 .layout-opcoes .letra-pequena {
-    font-size: 0rem;
+    font-size: 0.95rem;
+    max-width: 100%;
+}
+
+.area-sair .letra-grande {
+    font-size: 1.5rem;
+    max-width: 100%;
+}
+
+.area-sair .letra-pequena {
+    font-size: 0.95rem;
     max-width: 100%;
 }
 
@@ -16,29 +28,42 @@
 
 }
 
-.letra-grande {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: var(--corFundoBotaoOpcao);
-    margin: 0;
-}
-
-.letra-pequena {
-    font-size: 0.95rem;
-    font-weight: bold;
-    color: var(--corFundoBotaoOpcao);
-    margin: 0;
-}
-
-
-.cargoUsuario-grande {
+.cargoUsuario.letra-grande {
     font-size: 1.2rem;
     color: var(--corFundoBotaoOpcao);
     margin: 0;
 }
 
-.cargoUsuario-pequeno {
+.cargoUsuario.letra-pequena {
     font-size: 0.95rem;
+    color: var(--corFundoBotaoOpcao);
+    margin: 0;
+}
+
+.nomeUsuario.letra-grande {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: var(--corFundoBotaoOpcao);
+    margin: 0;
+}
+
+.nomeUsuario.letra-pequena {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--corFundoBotaoOpcao);
+    margin: 0;
+}
+
+.opcoes-Configuracoes .letra-grande {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: var(--corFundoBotaoOpcao);
+    margin: 0;
+}
+
+.opcoes-Configuracoes .letra-pequena {
+    font-size: 1.1rem;
+    font-weight: bold;
     color: var(--corFundoBotaoOpcao);
     margin: 0;
 }
