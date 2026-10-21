@@ -54,16 +54,32 @@
     margin: 0;
 }
 
-.opcoes-Configuracoes .letra-grande {
+.opcoes-Configuracoes .letra-grande *{
     font-size: 1.7rem;
-    font-weight: bold;
     color: var(--corFundoBotaoOpcao);
-    margin: 0;
 }
 
-.opcoes-Configuracoes .letra-pequena {
+.opcoes-Configuracoes .letra-pequena h4 {
     font-size: 1.1rem;
-    font-weight: bold;
     color: var(--corFundoBotaoOpcao);
-    margin: 0;
 }
+
+#tituloConfig.letra-grande  {
+    font-size: 2.9rem;
+}
+
+#tituloConfig.letra-pequena {
+    font-size: 1.4rem;
+}
+
+/* .header-configuracoes{
+    font-size: 30px;
+}
+
+.header-configuracoes .letra-grande{
+    font-size: 45px;
+}
+
+.header-configuracoes .letra-pequena{
+    font-size: 15px;
+} */

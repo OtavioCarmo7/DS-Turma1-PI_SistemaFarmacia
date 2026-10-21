@@ -1,10 +1,10 @@
 const telaConfiguracoes = `
               <header class="header-configuracoes">
-                    <h2 class="negrito ">Configurações</h2>
+                    <h2 class="negrito titulo " id="tituloConfig">Configurações</h2>
                 </header>
 
-                <main class="opcoes-Configuracoes">
-                    <h4 class="">Cor de Fundo</h4>
+                <main class="opcoes-Configuracoes" id="opcoes-Config">
+                    <h4 class="" id="corFundo">Cor de Fundo</h4>
 
                     <div class="form-field">
                         <div class="switch switch-padding theme-inverse" id="botaoFundoCor" style="--bs-switch-width: 25rem; --bs-switch-indicator-width: 2rem;  --bs-switch-padding: 0.10rem">
@@ -12,7 +12,7 @@ const telaConfiguracoes = `
                         </div>
                     </div>
 
-                    <h4 class="">Tamanho de Texto</h4>
+                    <h4 class="" id="tamanhoBtn">Tamanho de Texto</h4>
 
                     <div class="botoes-tamanho">
                         <button type="button" class="btn-outline theme-accent" id="btnPequeno">Pequena</button>
