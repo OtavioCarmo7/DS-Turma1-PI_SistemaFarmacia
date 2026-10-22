@@ -1,26 +1,27 @@
 .layout-opcoes .letra-grande {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     max-width: 100%;
+    white-space: nowrap;
 
 }
 
 .layout-opcoes .letra-pequena {
-    font-size: 0.95rem;
+    font-size: 0.80rem;
     max-width: 100%;
 }
 
 .area-sair .letra-grande {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     max-width: 100%;
 }
 
 .area-sair .letra-pequena {
-    font-size: 0.95rem;
+    font-size: 0.80rem;
     max-width: 100%;
 }
 
 .coluna-principal .letra-grande {
-    font-size: 45px;
+    font-size: 28px;
 }
 
 .coluna-principal .letra-pequena {
@@ -29,7 +30,7 @@
 }
 
 .cargoUsuario.letra-grande {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--corFundoBotaoOpcao);
     margin: 0;
 }
@@ -41,7 +42,8 @@
 }
 
 .nomeUsuario.letra-grande {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
+    white-space: nowrap;
     font-weight: bold;
     color: var(--corFundoBotaoOpcao);
     margin: 0;
@@ -65,7 +67,11 @@
 }
 
 #tituloConfig.letra-grande  {
-    font-size: 2.9rem;
+    font-size: 2.3rem;
+}
+
+#tituloConfig  {
+    font-size: 1.7rem;
 }
 
 #tituloConfig.letra-pequena {

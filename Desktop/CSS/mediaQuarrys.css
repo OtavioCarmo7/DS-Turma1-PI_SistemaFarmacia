@@ -1,53 +1,4 @@
-@media (max-width: 1366px) {
-    .pagina-principal {
-        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
-        display: grid;
-        align-items: center;
-        grid-template-columns: 25% 1fr;
-        height: 100vh;
-        gap: 45px;
-        width: 100%;
-    }
-
-    .pagina-principal-escuro {
-        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
-        display: grid;
-        align-items: center;
-        grid-template-columns: 25% 1fr;
-        height: 100vh;
-        gap: 45px;
-        width: 100%;
-        background-color: var(--cinza);
-    }
-
-
-    .coluna-lateral {
-        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
-        background-color: var(--azulFundoMenuOpcao);
-        min-height: 120vh;
-        height: auto;
-        padding: 2rem;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .coluna-lateral-escuro {
-        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
-        background-color: var(--pretoFundoMenuOpcaoEscuro);
-        min-height: 120vh;
-        height: auto;
-        padding: 2rem;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-}
-
-@media (max-width: 1920px) {
+@media (min-width: 1920px) {
 
     /* Layout Principal da Página que une as duas colunas */
     .pagina-principal {
@@ -79,10 +30,8 @@
     .coluna-lateral {
         transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
         background-color: var(--azulFundoMenuOpcao);
-        min-height: 120vh;
-        height: auto;
-        padding: 2rem;
         box-sizing: border-box;
+        padding: 2rem;
         display: flex;
         /* Deixa os elementos flexíveis */
         flex-direction: column;
@@ -95,10 +44,8 @@
         /* Define que qualquer mudança nas cores ou fundo levará 0.4 segundos de forma suave */
         transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
         background-color: var(--pretoFundoMenuOpcaoEscuro);
-        min-height: 120vh;
-        height: auto;
+         box-sizing: border-box;
         padding: 2rem;
-        box-sizing: border-box;
         display: flex;
         /* Deixa os elementos flexíveis */
         flex-direction: column;
@@ -106,4 +53,84 @@
         justify-content: space-between;
         /* Empurra o topo para cima e o botão 'Sair' para baixo */
     }
+
+    .layout-opcoes {
+        display: grid;
+        box-sizing: border-box;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        /*Cria duas colunas de tamanhos iguais para os botões do menu ficarem perfeitamente lado a lado.*/
+        padding: 2px;
+        /* Cria um espaçamento seguro e consistente entre os card */
+        justify-items: center;
+        align-items: center;
+        flex-grow: 1;
+    }
+
+    .quadrado-opcao {
+        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+        border-radius: 20px;
+        width: 7rem;
+        height: 7rem;
+        background-color: var(--azulFundoOpcao);
+    }
+
+    .quadrado-opcaoEscuro {
+      transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+        border-radius: 20px;
+        width: 7rem;
+        height: 7rem;
+        background-color: var(--corFundoBotaoOpcaoEscuro);
+    }
+
+    .layout-opcoes a,
+    .area-sair a {
+        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+        font-size: 1.1rem;
+        /*rem se adapta melhor caso o usuário mude o zoom da tela do navegador*/
+        font-weight: bold;
+        text-decoration: none;
+        /*Remove aquele sublinhado feio padrão que os links do HTML costumam ter.*/
+        color: var(--corFundoBotaoOpcao);
+        text-align: center;
+    }
+
+    .layout-opcoes-escuro a,
+    .area-sair-escuro a {
+        transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
+        font-size: 1.8rem;
+        /*rem se adapta melhor caso o usuário mude o zoom da tela do navegador*/
+        font-weight: bold;
+        text-decoration: none;
+        /*Remove aquele sublinhado feio padrão que os links do HTML costumam ter.*/
+        color: var(--corFundoBotaoOpcao);
+        text-align: center;
+    }
+
+    .linha {
+    background-color: var(--corFundoBotaoOpcao);
+    width: 100%;
+    height: 2px;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+.nomeUsuario {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--corFundoBotaoOpcao);
+}
+
+.cargoUsuario {
+    font-size: 1.2rem;
+    color: var(--corFundoBotaoOpcao);
+}
+
+.icon-usuario {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px;
+}
+
 }
