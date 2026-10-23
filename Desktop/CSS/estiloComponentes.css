@@ -15,7 +15,7 @@
 .layout-opcoes-escuro a,
 .area-sair-escuro a {
     transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     /*rem se adapta melhor caso o usuário mude o zoom da tela do navegador*/
     font-weight: bold;
     text-decoration: none;
