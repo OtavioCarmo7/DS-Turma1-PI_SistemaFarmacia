@@ -21,8 +21,6 @@ const telaConfiguracoes = `
 
                         <button type="button" class="btn-outline theme-danger" id="btnGrande">Grande</button>
                     </div>
-
-
                 </main>
         `
 

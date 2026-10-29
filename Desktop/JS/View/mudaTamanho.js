@@ -54,12 +54,13 @@ class MudaTamanho {
 
         this.apagaClasse(nomeUsuario, "letra-pequena");
         this.apagaClasse(cargoUsuario, "letra-pequena");
+        this.apagaClasse(tituloConfig, "letra-pequena");
+        this.apagaClasse(txtCorFundo, "letra-pequena")
+        this.apagaClasse(txtTamanhoBtn, "letra-pequena")
 
         this.adicionaClasse(tituloConfig, "letra-grande");
         this.adicionaClasse(txtCorFundo, "letra-grande")
         this.adicionaClasse(txtTamanhoBtn, "letra-grande")
-
-
         this.adicionaClasse(nomeUsuario, "letra-grande");
         this.adicionaClasse(cargoUsuario, "letra-grande");
     }
