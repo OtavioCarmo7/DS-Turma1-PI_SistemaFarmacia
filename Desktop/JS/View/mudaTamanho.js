@@ -34,7 +34,7 @@ class MudaTamanho {
             this.apagaClasse(opcao, "letra-grande");
         });
 
-        this.apagaClasse(nomeUsuario,"letra-grande");
+        this.apagaClasse(nomeUsuario, "letra-grande");
         this.apagaClasse(cargoUsuario, "letra-grande");
         this.apagaClasse(nomeUsuario, "letra-pequena");
         this.apagaClasse(cargoUsuario, "letra-pequena");
@@ -51,7 +51,7 @@ class MudaTamanho {
             this.apagaClasse(opcao, "letra-pequena")
             this.adicionaClasse(opcao, "letra-grande")
         });
-
+        
         this.apagaClasse(nomeUsuario, "letra-pequena");
         this.apagaClasse(cargoUsuario, "letra-pequena");
         this.apagaClasse(tituloConfig, "letra-pequena");
