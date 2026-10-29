@@ -1,27 +1,30 @@
 -- ================================================
 -- Stored Procedure: sp_ViewQuantidadeProduto
--- DescriÁ„o: Procedure para visualizar a quantidade total de um produto no estoque
--- Autor: Ot·vio Augusto Canola do Carmo
--- Data CriaÁ„o: 20/07/2026
+-- Descri√ß√£o: Procedure para visualizar a quantidade total de um produto no estoque
+-- Autor: Ot√°vio Augusto Canola do Carmo
+-- Data Cria√ß√£o: 20/07/2026
 -- ================================================
 
--- CriaÁ„o Procedure
-CREATE OR ALTER PROCEDURE sp_ViewQntProduto
+DELIMITER //
 
-	@id_Produto INT
+-- Cria√ß√£o Procedure
+CREATE PROCEDURE sp_ViewQntProduto
 
-AS
+(
+	IN p_id_Produto INT
+)
+
 BEGIN
 
-	-- SET NOCOUNT ON:
-    -- Evita mensagens autom·ticas "X linhas afetadas"
-    -- Ajuda em procedures (menos ìpoluiÁ„oî no resultado)
-	SET NOCOUNT ON;
-
-	-- ComeÁo TRY
-	BEGIN TRY 
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+		RESIGNAL;
+    END;
+    
+	START TRANSACTION;
 		
-    -- Cria uma tabela rascunho que armazena as informaÁıes do produto, n„o sendo armazenada no banco
+    -- Cria uma tabela rascunho que armazena as informa√ß√µes do produto, n√£o sendo armazenada no banco
     WITH EstoqueOrdenado AS (
     SELECT -- Todas as colunas que a tabela vai ter
         p.nome, 
@@ -30,35 +33,25 @@ BEGIN
         l.validade, 
         p.preco,
         SUM(l.qnt) OVER(PARTITION BY p.id) AS total_qnt, /* PARTITION ele vai fazer a soma de cada produto 
-        separadamente, produto por produto, n„o todos os produtos de uma vez juntos, diferente do GROUP BY, 
-        permitindo ler a informaÁ„o de validade dos lotes com o OVER */
-        ROW_NUMBER() OVER(PARTITION BY p.id ORDER BY l.validade ASC) AS ID_Ordem -- Ordena por validade mais prÛxima do produto
+        separadamente, produto por produto, n√£o todos os produtos de uma vez juntos, diferente do GROUP BY, 
+        permitindo ler a informa√ß√£o de validade dos lotes com o OVER */
+        ROW_NUMBER() OVER(PARTITION BY p.id ORDER BY l.validade ASC) AS ID_Ordem -- Ordena por validade mais pr√≥xima do produto
     FROM Tbl_Produto p 
     INNER JOIN Tbl_Produto_Compra pc ON p.id = pc.id_Produto 
     INNER JOIN Tbl_Lote l            ON pc.id = l.id_Produto_Compra 
     INNER JOIN Tbl_Estoque e         ON l.id = e.id_Lote            
-    WHERE p.id = @id_Produto
+    WHERE p.id = p_id_Produto
 )
-SELECT 
-    nome,
-    total_qnt AS qnt, -- Quantidade total somada de todos os lotes
-    posicao,          -- PosiÁ„o real do lote que vai vencer primeiro
-    validade,         -- Menor validade
-    preco
-FROM EstoqueOrdenado
-WHERE ID_Ordem = 1; -- Filtra para trazer apenas os dados do lote mais prÛximo de vencer
-
-
-	END TRY
-
-	-- ComeÁo CATCH
-	BEGIN CATCH
-
-		IF @@TRANCOUNT > 0 
-
-		DECLARE @Mensagem NVARCHAR(4000) = ERROR_MESSAGE();
-
-		RAISERROR(@Mensagem, 16, 1)
-	END CATCH
-END
-GO
+	SELECT 
+		nome,
+		total_qnt AS qnt, -- Quantidade total somada de todos os lotes
+		posicao,          -- Posi√ß√£o real do lote que vai vencer primeiro
+		validade,         -- Menor validade
+		preco
+	FROM EstoqueOrdenado
+	WHERE ID_Ordem = 1; -- Filtra para trazer apenas os dados do lote mais pr√≥ximo de vencer
+	
+    COMMIT;
+    
+	END;
+END //

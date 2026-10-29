@@ -53,7 +53,7 @@ CREATE TABLE Tbl_Usuario
 	nome VARCHAR(255) NOT NULL,
 	cpf CHAR(11) NOT NULL,
 	email VARCHAR(255) UNIQUE NOT NULL,
-	senha VARCHAR(25) NOT NULL,
+	senha VARCHAR(65) NOT NULL,
 	data_Nasc DATE NOT NULL
 );
 
@@ -104,7 +104,7 @@ CREATE TABLE Tbl_Fornecedor_Endereco
 	complemento VARCHAR(20),
 	referencia VARCHAR(100),
 	FOREIGN KEY (id_Endereco) REFERENCES Tbl_Endereco(id),
-	FOREIGN KEY (id_Fornecedor) REFERENCES TBL_Fornecedor(id)
+	FOREIGN KEY (id_Fornecedor) REFERENCES Tbl_Fornecedor(id)
 );
  
 CREATE TABLE Tbl_Cliente_Endereco
@@ -116,7 +116,7 @@ CREATE TABLE Tbl_Cliente_Endereco
 	complemento VARCHAR(20),
 	referencia VARCHAR(100),
 	FOREIGN KEY (id_Endereco) REFERENCES Tbl_Endereco(id),
-	FOREIGN KEY (id_Cliente) REFERENCES TBL_Cliente(id)
+	FOREIGN KEY (id_Cliente) REFERENCES Tbl_Cliente(id)
 );
 
 -- TABELAS Produto, Compra, Lote, Estoque, ProdutoVenda, Venda, Forma de Pagamento
@@ -165,7 +165,7 @@ CREATE TABLE Tbl_Estoque
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	id_Lote INT NOT NULL,
 	posicao VARCHAR(30) NOT NULL,
-	FOREIGN KEY (id_Lote) REFERENCES TBL_Lote(id)
+	FOREIGN KEY (id_Lote) REFERENCES Tbl_Lote(id)
 );
 
 CREATE TABLE Tbl_Venda
@@ -280,7 +280,6 @@ SELECT * FROM Tbl_Produto_Venda ORDER BY id DESC;
 SELECT * FROM Tbl_Pagamento_Venda ORDER BY id DESC;
 
 -- == ViewVendas ==
-
 CALL sp_ViewVendas;
 
 -- == ViewContaCliente ==

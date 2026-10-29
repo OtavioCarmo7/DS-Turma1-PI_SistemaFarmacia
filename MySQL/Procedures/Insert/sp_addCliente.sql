@@ -6,7 +6,7 @@
 -- ================================================
 
 -- Entra no banco de dados
-USE dbsannus
+USE dbSannus
 
 -- Altera temporariamente o caractere finalizador de comandos do MySQL (que padrão é ;) para //
 DELIMITER //

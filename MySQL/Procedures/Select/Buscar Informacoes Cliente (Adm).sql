@@ -1,41 +1,34 @@
 -- ================================================
 -- Stored Procedure: sp_ViewCliente
--- Descrição: Procedure para visualizar as informações da conta do cliente selecionado pelo admin
--- Autor: Otávio Augusto Canola do Carmo
--- Data Criação: 24/07/2026
+-- DescriÃ§Ã£o: Procedure para visualizar as informaÃ§Ãµes da conta do cliente selecionado pelo admin
+-- Autor: OtÃ¡vio Augusto Canola do Carmo
+-- Data CriaÃ§Ã£o: 24/07/2026
 -- ================================================
 
--- Criação Procedure
-CREATE OR ALTER PROCEDURE sp_ViewCliente
+DELIMITER //
 
-	@id_Cliente INT
+-- CriaÃ§Ã£o Procedure
+CREATE PROCEDURE sp_ViewCliente 
+(
+	IN p_id_Cliente INT
+)
 
-AS
 BEGIN
 
-	-- SET NOCOUNT ON:
-    -- Evita mensagens automáticas "X linhas afetadas"
-    -- Ajuda em procedures (menos “poluição” no resultado)
-	SET NOCOUNT ON;
-
-	-- Começo TRY
-	BEGIN TRY 
-		
-    SELECT u.nome, u.email, t.telefone, u.data_Nasc FROM Tbl_Usuario u
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+    
+    START TRANSACTION;
+    
+	SELECT u.nome, u.email, t.telefone, u.data_Nasc FROM Tbl_Usuario u
 	INNER JOIN Tbl_Telefone_Usuario t ON t.id_Usuario = u.id 
 	INNER JOIN Tbl_Cliente c ON c.id_Usuario = u.id
-	WHERE u.id = @id_Cliente
+	WHERE u.id = @id_Cliente;
+    
+	COMMIT;
+END //
 
-	END TRY
-
-	-- Começo CATCH
-	BEGIN CATCH
-
-		IF @@TRANCOUNT > 0 
-
-		DECLARE @Mensagem NVARCHAR(4000) = ERROR_MESSAGE();
-
-		RAISERROR(@Mensagem, 16, 1)
-	END CATCH
-END
-GO
+DELIMITER ;
