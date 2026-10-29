@@ -1,6 +1,6 @@
 const telaConfiguracoes = `
               <header class="header-configuracoes">
-                    <h2 class="negrito titulo " id="tituloConfig">Configurações</h2>
+                    <h2 class="negrito" id="tituloConfig">Configurações</h2>
                 </header>
 
                 <main class="opcoes-Configuracoes" id="opcoes-Config">

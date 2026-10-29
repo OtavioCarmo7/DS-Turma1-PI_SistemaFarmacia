@@ -2,19 +2,20 @@
 .layout-opcoes a,
 .area-sair a {
     transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     /*rem se adapta melhor caso o usuário mude o zoom da tela do navegador*/
     font-weight: bold;
     text-decoration: none;
     /*Remove aquele sublinhado feio padrão que os links do HTML costumam ter.*/
     color: var(--corFundoBotaoOpcao);
     text-align: center;
+    white-space: nowrap;
 }
 
 .layout-opcoes-escuro a,
 .area-sair-escuro a {
     transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     /*rem se adapta melhor caso o usuário mude o zoom da tela do navegador*/
     font-weight: bold;
     text-decoration: none;
@@ -23,23 +24,17 @@
     text-align: center;
 }
 
-/* Grid Principal das Opções do Menu (2 colunas) */
-.layout-opcoes a {
-    font-size: 1.1rem;
-    max-width: 100%;
-}
-
 .nomeUsuario {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: var(--corFundoBotaoOpcao);
-    margin: 0;
+    white-space: nowrap;
+
 }
 
 .cargoUsuario {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--corFundoBotaoOpcao);
-    margin: 0;
 }
 
 .linha {
@@ -47,16 +42,14 @@
     ;
     width: 100%;
     height: 2px;
-    margin-top: 4%;
-    margin-bottom: 4%;
+    margin-top: 2%;
 }
 
 .icon-usuario {
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0;
 }
 
 .info-usuario {
@@ -67,22 +60,20 @@
 .quadrado-opcao {
     transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
     border-radius: 12px;
-    width: 6rem;
-    height: 6rem;
+    width: 4rem;
+    height: 4rem;
     background-color: var(--azulFundoOpcao);
 }
 
 .quadrado-opcaoEscuro {
     transition: background-color 0.2s ease, color 0.4s ease, border-color 0.2s ease;
     border-radius: 12px;
-    width: 6rem;
-    height: 6rem;
+    width: 4rem;
+    height: 4rem;
     background-color: var(--corFundoBotaoOpcaoEscuro);
 }
 
-.botaoFundo {
-    width: 20rem;
-}
+
 
 .form-field {
     margin-bottom: 20%;
