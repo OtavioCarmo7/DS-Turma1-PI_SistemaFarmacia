@@ -210,8 +210,9 @@ CREATE TABLE Tbl_Produto_Venda
 -- ================================= TESTANDO PROCEDURES =================================
 
 -- === AddFornecedor ==
-CALL sp_AddFornecedor ('Andre', '09090909090909', 'andre@gmail.com', '99999999999999');
+CALL sp_AddFornecedor ('Andre', '09090909090991', 'andra@gmail.com', '99999999999999', 1, '223233456', 'a', 'a', 'a', 'a', 'a', 'a', 'a');
 
+SELECT * FROM Tbl_Endereco;
 SELECT * FROM Tbl_Fornecedor;
 SELECT * FROM Tbl_Telefone_Fornecedor;
 
@@ -230,7 +231,7 @@ CALL sp_ReporEstoque
 (
 	1, 
     1195.00, 
-    '[{"id_Produto": 1; "qnt": 2; "valor_unitario": 12.50; "cod": "L004", "validade": "2027-01-05", "posicao": "A1-P5"}]'
+    '[{"id_Produto": 1, "qnt": 2, "valor_Unitario": 12.50, "cod": "L004", "validade": "2027-01-05", "posicao": "A1-P5"}]'
 );
 
 SELECT * FROM Tbl_Compra ORDER BY id DESC;

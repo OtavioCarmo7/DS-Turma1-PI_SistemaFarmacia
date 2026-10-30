@@ -19,6 +19,7 @@ CREATE PROCEDURE sp_AddFornecedor
 	IN p_telefone VARCHAR(14),
 
 	-- Endereço
+    IN p_id_endereco INT,
 	IN p_cep VARCHAR(9),
 	IN p_logradouro VARCHAR(50),
 	IN p_bairro VARCHAR(50),
@@ -52,6 +53,7 @@ BEGIN
 
 	IF v_existe > 0 THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Fornecedor com CNPJ informado já cadastrado.';
+        ROLLBACK;
 	END IF;
 
 	INSERT INTO Tbl_Fornecedor (nome, cnpj, email) 
@@ -62,6 +64,9 @@ BEGIN
 	IF ROW_COUNT() = 1 THEN
 		INSERT INTO Tbl_Telefone_Fornecedor (id_Fornecedor, telefone) 
 		VALUES (v_ultimo_Id, p_telefone);
+        
+        INSERT INTO Tbl_Endereco (cep, logradouro, bairro, cidade, uf) VALUES
+        (p_cep, p_logradouro, p_bairro, p_cidade, p_uf);
 
 		INSERT INTO Tbl_Fornecedor_Endereco (id_Fornecedor, id_Endereco, numero, complemento, referencia) 
 		VALUES (v_ultimo_Id, p_id_Endereco, p_numero, p_complemento, p_referencia);
