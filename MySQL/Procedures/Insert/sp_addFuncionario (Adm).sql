@@ -8,10 +8,8 @@
 -- Altera temporariamente o caractere finalizador de comandos do MySQL (que padrão é ;) para //
 DELIMITER //
 
--- Remove a procedure sp_AddFuncionario do banco de dados, caso ela já exista.
 DROP PROCEDURE IF EXISTS sp_AddFuncionario //
 
--- Criação Procedure
 CREATE PROCEDURE sp_AddFuncionario
 (
     -- Usuario
@@ -58,18 +56,10 @@ BEGIN
 			-- Chama a procedure responsável por adicionar o usuário e telefone
 			CALL sp_AddUsuario(p_nome, p_cpf, p_email, p_senha, p_data_Nasc, p_telefone, v_ultimo_Id);
 
-			-- Se teve um elemento adicionado ele insere o telefone e adiciona como funcionario
-			IF ROW_COUNT() = 1 THEN
+			INSERT INTO Tbl_Funcionario (id_Usuario, data_Admissao, cargo, situacao) VALUES
+				(v_ultimo_id, p_data_Admissao, p_cargo, p_situacao);
 
-				INSERT INTO Tbl_Funcionario (id_Usuario, data_Admissao, cargo, situacao) VALUES
-					(v_ultimo_id, p_data_Admissao, p_cargo, p_situacao);
-
-				COMMIT;
-			
-            ELSE
-				ROLLBACK;
-				SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Falha ao adicionar o funcionário.';
-			END IF;
+			COMMIT;
 END //
 
 DELIMITER ;

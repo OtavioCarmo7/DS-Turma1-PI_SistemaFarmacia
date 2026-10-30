@@ -26,8 +26,6 @@ CREATE PROCEDURE sp_AddFornecedor
 	IN p_uf CHAR(2), 
 
 	-- Endereço Fornecedor
-	IN p_id_Fornecedor INT,
-	IN p_id_Endereco INT,
 	IN p_numero VARCHAR(5),
 	IN p_complemento VARCHAR(20),
 	IN p_referencia VARCHAR(100)

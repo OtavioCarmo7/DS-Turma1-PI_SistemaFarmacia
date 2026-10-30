@@ -130,6 +130,9 @@ CREATE TABLE Tbl_Produto
 	tarja VARCHAR(20) NOT NULL
 );
 
+INSERT INTO Tbl_Produto (nome, descricao, preco, tarja) VALUES ('afa', 'afesfe', 3.00, 'bsef');
+
+
 CREATE TABLE Tbl_Compra
 (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -207,13 +210,13 @@ CREATE TABLE Tbl_Produto_Venda
 -- ================================= TESTANDO PROCEDURES =================================
 
 -- === AddFornecedor ==
-CALL sp_AddFornecedor ('Andre', 1231231223452, 'andre@gmail.com', 11992180909);
+CALL sp_AddFornecedor ('Andre', '09090909090909', 'andre@gmail.com', '99999999999999');
 
 SELECT * FROM Tbl_Fornecedor;
 SELECT * FROM Tbl_Telefone_Fornecedor;
 
 -- == AddFuncionario ==
-CALL sp_AddFuncionario ('Paulo', 12312312234, 'paulo@gmail.com', 11992180909, '09/11/21', 88877765456789, '07/06/24', 'gerente', 'Ativo');
+CALL sp_AddFuncionario ('Fábio', 12312312234, 'fabio@gmail.com', 11992180909, '09-11-21', 88877765456789, '07-06-24', 'gerente', 'Ativo');
 
 SELECT * FROM Tbl_Usuario;
 SELECT * FROM Tbl_Telefone_Usuario;
@@ -227,7 +230,7 @@ CALL sp_ReporEstoque
 (
 	1, 
     1195.00, 
-    '[{"id_produto": 1; "qnt": 2; "valor_unitario": 12.50; "cod": "L004", "validade": "2027-01-05", "posicao": "A1-P5"}]'
+    '[{"id_Produto": 1; "qnt": 2; "valor_unitario": 12.50; "cod": "L004", "validade": "2027-01-05", "posicao": "A1-P5"}]'
 );
 
 SELECT * FROM Tbl_Compra ORDER BY id DESC;
@@ -243,9 +246,9 @@ CALL sp_AddCliente
     '99999999999', 
     'otavio.augusto@gmail.com', 
     'Ota_01', 
-    '2006/10/02', 
+    '2006-10-02', 
     '11992181212', 
-    'true'
+    1
 );
 
 SELECT * FROM Tbl_Cliente;
@@ -264,14 +267,14 @@ SELECT * FROM Tbl_Funcionario;
 CALL sp_realizarVenda 
 (
 	1, 
-	3, 
+	1, 
     'NFE-0001', 
     'presencial', 
     'dinheiro', 
     50.90, 
     60.00, 
     'pago', 
-    '[{"id_produto": 1, "qnt": 2, "valor_unitario": 12.50}]'
+    '[{"id_Produto": 1, "qnt": 2, "valor_Unitario": 12.50}]'
 );
 
 -- Confere os resultados
@@ -284,8 +287,8 @@ CALL sp_ViewVendas;
 
 -- == ViewContaCliente ==
 
-CALL sp_ViewContaCliente (1);
+CALL sp_ViewContaCliente (7);
 
 -- == ViewCliente
 
-CALL sp_ViewCliente (1);
+CALL sp_ViewCliente (7);
