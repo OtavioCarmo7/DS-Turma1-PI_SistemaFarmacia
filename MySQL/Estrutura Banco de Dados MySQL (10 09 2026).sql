@@ -179,7 +179,7 @@ CREATE TABLE Tbl_Venda
 	nfe VARCHAR(100) NOT NULL,
 	valor DECIMAL(8,2) NOT NULL,
 	data_Venda DATETIME NOT NULL,
-	canal_Venda VARCHAR(20) NOT NULL,
+	canal_Venda ENUM('presencial', 'aplicativo', 'site') NOT NULL DEFAULT 'pendente',
 	FOREIGN KEY (id_Cliente) REFERENCES Tbl_Cliente(id),
 	FOREIGN KEY (id_Funcionario) REFERENCES Tbl_Funcionario(id)
 );
