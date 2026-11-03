@@ -79,7 +79,7 @@ CREATE TABLE Tbl_Funcionario
 	id_Usuario INT NOT NULL,
 	data_Admissao DATE NOT NULL,
 	cargo VARCHAR(50) NOT NULL,
-	situacao VARCHAR(20) NOT NULL CHECK (situacao IN ('Ativo', 'Afastado', 'Demitido')),
+	situacao ENUM('Ativo', 'Afastado', 'Demitido', 'Pendente') NOT NULL DEFAULT 'Pendente',
 	FOREIGN KEY (id_Usuario) REFERENCES Tbl_Usuario(id)
 );
 
@@ -130,9 +130,6 @@ CREATE TABLE Tbl_Produto
 	tarja VARCHAR(20) NOT NULL
 );
 
-INSERT INTO Tbl_Produto (nome, descricao, preco, tarja) VALUES ('afa', 'afesfe', 3.00, 'bsef');
-
-
 CREATE TABLE Tbl_Compra
 (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -179,7 +176,7 @@ CREATE TABLE Tbl_Venda
 	nfe VARCHAR(100) NOT NULL,
 	valor DECIMAL(8,2) NOT NULL,
 	data_Venda DATETIME NOT NULL,
-	canal_Venda ENUM('presencial', 'aplicativo', 'site') NOT NULL DEFAULT 'pendente',
+	canal_Venda ENUM('Presencial', 'Aplicativo', 'Site', 'Pendente') NOT NULL DEFAULT 'Pendente',
 	FOREIGN KEY (id_Cliente) REFERENCES Tbl_Cliente(id),
 	FOREIGN KEY (id_Funcionario) REFERENCES Tbl_Funcionario(id)
 );
