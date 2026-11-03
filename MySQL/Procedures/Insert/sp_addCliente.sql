@@ -63,6 +63,8 @@ BEGIN
 
 	INSERT INTO Tbl_Cliente (id_Usuario, aceita_Ofertas) 
 	VALUES (v_ultimo_Id, p_aceitaOfertas);
+    
+    SELECT 'Cliente cadastrado com sucesso!';
 
 	COMMIT;
 END //

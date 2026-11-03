@@ -66,9 +66,9 @@
 			INSERT INTO Tbl_Telefone_Usuario (id_Usuario, telefone) 
 			VALUES (p_idUsuario, p_telefone);
 
+		SELECT 'Usuario cadastrado com sucesso!';
+
 			COMMIT;
-		ELSE
-			ROLLBACK;
 		END IF;
 	-- Finaliza o bloco do corpo da Stored Procedure com o delimitador temporário.
 	END //

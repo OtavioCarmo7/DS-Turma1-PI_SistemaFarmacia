@@ -85,6 +85,8 @@ BEGIN
 	INSERT INTO Tbl_Pagamento_Venda (id_Venda, forma_Pagamento, valor_Pago, valor_Recebido, troco, situacao) 
 	VALUES (v_id_Venda, p_forma_Pagamento, p_valor_Pago, p_valor_Recebido, v_troco, p_situacao);
 
+	SELECT 'Venda efetuada com sucesso';
+
 	COMMIT;
 END //
 

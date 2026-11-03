@@ -71,10 +71,9 @@ BEGIN
 		INSERT INTO Tbl_Fornecedor_Endereco (id_Fornecedor, id_Endereco, numero, complemento, referencia) 
 		VALUES (v_ultimo_Id, p_id_Endereco, p_numero, p_complemento, p_referencia);
 
+		SELECT 'Fornecedor cadastrado com sucesso!';
+	
 		COMMIT;
-	ELSE
-		ROLLBACK;
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Falha ao adicionar o fornecedor.';
 	END IF;
 END //
 

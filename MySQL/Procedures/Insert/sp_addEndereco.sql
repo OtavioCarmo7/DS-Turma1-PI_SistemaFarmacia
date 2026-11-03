@@ -32,6 +32,8 @@ BEGIN
 
 	INSERT INTO Tbl_Endereco (cep, logradouro, bairro, cidade, uf) VALUES
 	(p_cep, p_logradouro, p_bairro, p_cidade, p_uf);
+    
+    SELECT 'Endereço cadastrado com sucesso!'
 
 	COMMIT;
 

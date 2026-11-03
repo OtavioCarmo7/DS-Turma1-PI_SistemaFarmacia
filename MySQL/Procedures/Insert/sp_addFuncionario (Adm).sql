@@ -58,8 +58,12 @@ BEGIN
 
 			INSERT INTO Tbl_Funcionario (id_Usuario, data_Admissao, cargo, situacao) VALUES
 				(v_ultimo_id, p_data_Admissao, p_cargo, p_situacao);
+	
+			SELECT 'Funcionário cadastrado com sucesso';
 
 			COMMIT;
+            
+            
 END //
 
 DELIMITER ;

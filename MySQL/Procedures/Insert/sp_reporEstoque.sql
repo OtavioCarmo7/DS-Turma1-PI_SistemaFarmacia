@@ -78,7 +78,9 @@ BEGIN
 
 		SET v_idx = v_idx + 1;
 	END WHILE;
-
+	
+    SELECT 'Estoque reposto com sucesso';
+    
 	COMMIT;
 END //
 
