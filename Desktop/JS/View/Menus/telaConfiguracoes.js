@@ -1,3 +1,5 @@
+// Criação da tela com HTML
+
 const telaConfiguracoes = `
               <header class="header-configuracoes">
                     <h2 class="negrito" id="tituloConfig">Configurações</h2>
@@ -23,6 +25,9 @@ const telaConfiguracoes = `
                     </div>
                 </main>
         `
+
+/* Coloca o HTML acima no espaço em branco da página inicial quando 
+clicamos no botão configuracoes*/
 
 function renderizarConfiguracoes(){
 
