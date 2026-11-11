@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificar Histórico</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Adicionado o script do Lucide para carregar os ícones na tela -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- MENU LATERAL -->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="user-profile">
+          <div class="avatar"><i data-lucide="user"></i></div>
+          <div class="user-info">
+            <h2>NOME DO USUÁRIO</h2>
+            <p>DOCUMENTO</p>
+          </div>
+        </div>
+
+        <nav class="nav-grid">
+          <a href="#" class="nav-card">
+            <div class="icon-box"><i data-lucide="shopping-cart"></i></div>
+            <span>REALIZAR VENDA</span>
+          </a>
+          <a href="clientes.html" class="nav-card">
+            <div class="icon-box"><i data-lucide="users"></i></div>
+            <span>CLIENTES</span>
+          </a>
+          <a href="#" class="nav-card">
+            <div class="icon-box"><i data-lucide="package"></i></div>
+            <span>VERIFICAR ESTOQUE</span>
+          </a>
+          <a href="historico-vendas.html" class="nav-card active">
+            <div class="icon-box"><i data-lucide="history"></i></div>
+            <span>VERIFICAR HISTÓRICO</span>
+          </a>
+          <a href="#" class="nav-card">
+            <div class="icon-box"><i data-lucide="settings"></i></div>
+            <span>CONFIGURAÇÕES</span>
+          </a>
+          <a href="#" class="nav-card">
+            <div class="icon-box"><i data-lucide="layout-dashboard"></i></div>
+            <span>ÁREA DE CONTROLE</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-bottom">
+        <button class="btn-logout">
+          <i data-lucide="log-out"></i>
+          <span>SAIR</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL (HISTÓRICO) -->
+    <main class="main-content">
+      <section class="card-screen">
+        <div class="filter-box">
+          <span class="filter-title">FILTRAGEM</span>
+          <div class="filter-inputs">
+            <label class="checkbox-label">
+              <input type="checkbox" id="filter-registered">
+              <span>Cliente cadastrado no sistema?</span>
+            </label>
+            <input type="text" id="filter-cpf" placeholder="CPF DO CLIENTE...">
+            <input type="text" id="filter-address" placeholder="ENDEREÇO DO CLIENTE...">
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 33.3%;">VALOR</th>
+                <th style="width: 33.3%;">NÚMERO DO CPF</th>
+                <th style="width: 33.3%;">RELATÓRIO</th>
+              </tr>
+            </thead>
+            <tbody id="historico-table-body">
+              <!-- Preenchido via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="actions-right">
+          <button onclick="buscarHistorico()" class="btn-primary">BUSCAR</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="historico-vendas.js"></script>
+</body>
+</html>

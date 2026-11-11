@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Clientes</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- MENU LATERAL -->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="user-profile">
+          <div class="avatar"><i data-lucide="user"></i></div>
+          <div class="user-info">
+            <h2>NOME DO USUÁRIO</h2>
+            <p>DOCUMENTO</p>
+          </div>
+        </div>
+
+        <nav class="nav-grid">
+          <a href="#" class="nav-card">
+            <div class="icon-box"><i data-lucide="shopping-cart"></i></div>
+            <span>REALIZAR VENDA</span>
+          </a>
+          <a href="clientes.html" class="nav-card active">
+            <div class="icon-box"><i data-lucide="users"></i></div>
+            <span>CLIENTES</span>
+          </a>
+          <a href="#" class="nav-card">
+            <div class="icon-box"><i data-lucide="package"></i></div>
+            <span>VERIFICAR ESTOQUE</span>
+          </a>
+          <a href="historico-vendas.html" class="nav-card">
+            <div class="icon-box"><i data-lucide="history"></i></div>
+            <span>VERIFICAR HISTÓRICO</span>
+          </a>
+          <a href="#" class="nav-card">
+            <div class="icon-box"><i data-lucide="settings"></i></div>
+            <span>CONFIGURAÇÕES</span>
+          </a>
+          <a href="#" class="nav-card">
+            <div class="icon-box"><i data-lucide="layout-dashboard"></i></div>
+            <span>ÁREA DE CONTROLE</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-bottom">
+        <button class="btn-logout">
+          <i data-lucide="log-out"></i>
+          <span>SAIR</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL (CLIENTES) -->
+    <main class="main-content">
+      <section class="card-screen">
+        <div class="search-bar">
+          <input type="text" id="search-client-cpf" placeholder="CPF DO CLIENTE...">
+          <button onclick="buscarCliente()" class="btn-search">
+            <i data-lucide="search"></i>
+          </button>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 33.3%;">NOME</th>
+                <th style="width: 33.3%;">NÚMERO DO CPF</th>
+                <th style="width: 33.3%;">ENDEREÇO</th>
+              </tr>
+            </thead>
+            <tbody id="clientes-table-body">
+              <!-- Preenchido via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="actions-right">
+          <button onclick="atualizarCliente()" class="btn-secondary">ATUALIZAR</button>
+          <button onclick="removerCliente()" class="btn-secondary">REMOVER</button>
+          <button onclick="openModal('modal-cadastrar')" class="btn-primary">CADASTRAR</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL -->
+  <div id="modal-cadastrar" class="modal-overlay hidden">
+    <div class="modal-card">
+      <h3>Cadastrar Novo Cliente</h3>
+      <div class="form-group">
+        <label>Nome Completo</label>
+        <input type="text" id="new-name">
+      </div>
+      <div class="form-group">
+        <label>CPF</label>
+        <input type="text" id="new-cpf" placeholder="000.000.000-00">
+      </div>
+      <div class="form-group">
+        <label>Endereço</label>
+        <input type="text" id="new-address">
+      </div>
+      <div class="modal-actions">
+        <button onclick="closeModal('modal-cadastrar')" class="btn-secondary">Cancelar</button>
+        <button onclick="salvarCliente()" class="btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="clientes.js"></script>
+</body>
+</html>
