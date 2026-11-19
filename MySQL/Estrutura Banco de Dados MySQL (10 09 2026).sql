@@ -54,7 +54,8 @@ CREATE TABLE Tbl_Usuario
 	cpf CHAR(11) NOT NULL,
 	email VARCHAR(255) UNIQUE NOT NULL,
 	senha VARCHAR(65) NOT NULL,
-	data_Nasc DATE NOT NULL
+	data_Nasc DATE NOT NULL,
+    foto_perfil VARCHAR(55)
 );
 
 CREATE TABLE Tbl_Telefone_Usuario
@@ -177,6 +178,9 @@ CREATE TABLE Tbl_Venda
 	valor DECIMAL(8,2) NOT NULL,
 	data_Venda DATETIME NOT NULL,
 	canal_Venda ENUM('Presencial', 'Aplicativo', 'Site', 'Pendente') NOT NULL DEFAULT 'Pendente',
+    status_pagamento VARCHAR(24) NOT NULL DEFAULT 'pending',
+	referencia VARCHAR(36) DEFAULT NULL,
+	mp_payment_id VARCHAR(100) DEFAULT NULL,
 	FOREIGN KEY (id_Cliente) REFERENCES Tbl_Cliente(id),
 	FOREIGN KEY (id_Funcionario) REFERENCES Tbl_Funcionario(id)
 );
