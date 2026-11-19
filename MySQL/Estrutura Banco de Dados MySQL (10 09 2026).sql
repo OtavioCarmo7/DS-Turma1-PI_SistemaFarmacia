@@ -55,7 +55,7 @@ CREATE TABLE Tbl_Usuario
 	email VARCHAR(255) UNIQUE NOT NULL,
 	senha VARCHAR(65) NOT NULL,
 	data_Nasc DATE NOT NULL,
-    foto_perfil VARCHAR(55)
+    foto_perfil VARCHAR(500)
 );
 
 CREATE TABLE Tbl_Telefone_Usuario
@@ -128,7 +128,8 @@ CREATE TABLE Tbl_Produto
 	nome VARCHAR(100) NOT NULL,
 	descricao VARCHAR(255) NOT NULL,
 	preco DECIMAL(7,2) NOT NULL,
-	tarja VARCHAR(20) NOT NULL
+	tarja VARCHAR(20) NOT NULL,
+    foto_produto VARCHAR(500) NOT NULL
 );
 
 CREATE TABLE Tbl_Compra
