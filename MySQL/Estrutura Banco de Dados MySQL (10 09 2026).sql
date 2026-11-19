@@ -55,7 +55,7 @@ CREATE TABLE Tbl_Usuario
 	email VARCHAR(255) UNIQUE NOT NULL,
 	senha VARCHAR(65) NOT NULL,
 	data_Nasc DATE NOT NULL,
-    foto_Perfil VARCHAR(55)
+    foto_perfil VARCHAR(55)
 );
 
 CREATE TABLE Tbl_Telefone_Usuario
@@ -296,4 +296,3 @@ CALL sp_ViewContaCliente (7);
 -- == ViewCliente
 
 CALL sp_ViewCliente (7);
-
