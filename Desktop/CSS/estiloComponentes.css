@@ -78,3 +78,8 @@
 .form-field {
     margin-bottom: 20%;
 }
+
+.barra-pesquisa-escuro {
+    background-color: var(--cinza);
+    color: white;
+}

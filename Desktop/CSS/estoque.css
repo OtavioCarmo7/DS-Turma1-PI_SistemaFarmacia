@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100dvh;
+}
+
+main {
+    height: 100%;
+}
+
+#container-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#right-side-main {
+    height: 600px;
+    max-height: 80vh;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 50px;
+}
+
+#estoque-top {
+    display: flex;
+}
+
+#estoque-search-forms {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+#estoque-search-forms input {
+    margin: 5px;
+}
+
+#estoque-combobox-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+#estoque-final-btn {
+    display: flex;
+    justify-content: right;
+}
+
+button {
+    margin: 10px;
+}
+
+#tabelaEstoque {
+    overflow-y: auto;
+}
+
+.tabelaEstoque-escuro td{
+    background-color: var(--cinza);
+    color: var(--branco);
+}
+
+
+.tabelaEstoque-escuro th{
+    background-color: black;
+    color: var(--branco);
+}
+
+#tabelaEstoque th{
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.tabela-container {
+    max-height: 350px;
+    overflow-y: auto;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+#inputCodigoBarras {
+    height: 30px;
+}
