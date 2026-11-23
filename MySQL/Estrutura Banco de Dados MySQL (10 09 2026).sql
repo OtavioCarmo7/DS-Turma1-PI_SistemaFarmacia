@@ -120,6 +120,31 @@ CREATE TABLE Tbl_Cliente_Endereco
 	FOREIGN KEY (id_Cliente) REFERENCES Tbl_Cliente(id)
 );
 
+ SELECT
+            c.id,
+            u.nome,
+            u.email,
+            u.cpf,
+            e.logradouro,
+            te.telefone
+        FROM Tbl_Cliente c
+        INNER JOIN Tbl_Usuario u ON u.id = c.id_Usuario 
+        INNER JOIN Tbl_Cliente_Endereco ce ON c.id = ce.id_Cliente  
+        INNER JOIN Tbl_Endereco e ON e.id = ce.id_Endereco 
+        INNER JOIN Tbl_Telefone_Usuario te ON te.id_usuario = u.id
+        ORDER BY u.nome;
+SELECT * FROM Tbl_Cliente;
+SELECT * FROM Tbl_Usua;
+
+INSERT INTO Tbl_Endereco(cep, logradouro, bairro, cidade, uf) VALUES
+('05767350', 'Rua Doutor Renato Bueno Neto', 'Jardim Catanduva', 'São Paulo', 'SP');
+
+INSERT INTO Tbl_Cliente_Endereco(id_Endereco, id_Cliente, numero, complemento, referencia) VALUES
+(1, 1, '595', 'Casa', 'Rua da feira');
+
+INSERT INTO Tbl_Telefone_Usuario(id_Usuario, telefone) VALUES
+(1, '11992181212')
+
 -- TABELAS Produto, Compra, Lote, Estoque, ProdutoVenda, Venda, Forma de Pagamento
 
 CREATE TABLE Tbl_Produto
@@ -128,7 +153,8 @@ CREATE TABLE Tbl_Produto
 	nome VARCHAR(100) NOT NULL,
 	descricao VARCHAR(255) NOT NULL,
 	preco DECIMAL(7,2) NOT NULL,
-	tarja VARCHAR(20) NOT NULL
+	tarja VARCHAR(20) NOT NULL,
+    cod_barras CHAR(14) NOT NULL
 );
 
 CREATE TABLE Tbl_Compra
@@ -232,7 +258,7 @@ CALL sp_ReporEstoque
 (
 	1, 
     1195.00, 
-    '[{"id_Produto": 1, "qnt": 2, "valor_Unitario": 12.50, "cod": "L004", "validade": "2027-01-05", "posicao": "A1-P5"}]'
+    '[{"id_Produto": 4, "qnt": 2, "valor_Unitario": 20.00, "cod": "L004", "validade": "2027-01-05", "posicao": "A1-P5"}]'
 );
 
 SELECT * FROM Tbl_Compra ORDER BY id DESC;
@@ -263,12 +289,14 @@ SELECT * FROM Tbl_Telefone_Usuario;
 SELECT * FROM Tbl_Produto;
 SELECT * FROM Tbl_Cliente;
 SELECT * FROM Tbl_Funcionario;
+INSERT INTO Tbl_Produto (nome, descricao, preco, tarja, foto_produto, cod_barras) VALUES
+('dipirona', 'remedio de dor de cabeça', 20.00, 'livre', '', '23456789012344');
 
 -- ===== TESTE 1: venda com 2 produtos, pagamento em dinheiro com troco =====
 
 CALL sp_realizarVenda 
 (
-	1, 
+	2, 
 	1, 
     'NFE-0001', 
     'presencial', 
