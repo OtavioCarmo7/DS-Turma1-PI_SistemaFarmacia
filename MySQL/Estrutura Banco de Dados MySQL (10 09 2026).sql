@@ -143,7 +143,7 @@ INSERT INTO Tbl_Cliente_Endereco(id_Endereco, id_Cliente, numero, complemento, r
 (1, 1, '595', 'Casa', 'Rua da feira');
 
 INSERT INTO Tbl_Telefone_Usuario(id_Usuario, telefone) VALUES
-(1, '11992181212')
+(1, '11992181212');
 
 -- TABELAS Produto, Compra, Lote, Estoque, ProdutoVenda, Venda, Forma de Pagamento
 
@@ -154,11 +154,8 @@ CREATE TABLE Tbl_Produto
 	descricao VARCHAR(255) NOT NULL,
 	preco DECIMAL(7,2) NOT NULL,
 	tarja VARCHAR(20) NOT NULL,
-<<<<<<< HEAD
-    cod_barras CHAR(14) NOT NULL
-=======
+    cod_barras CHAR(14) NOT NULL,
     foto_produto VARCHAR(500) NOT NULL
->>>>>>> b31941e26bc7fa3400c1efe94349d84c8a3c5dd2
 );
 
 CREATE TABLE Tbl_Compra
