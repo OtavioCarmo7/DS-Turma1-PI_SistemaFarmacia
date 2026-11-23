@@ -55,7 +55,7 @@ CREATE TABLE Tbl_Usuario
 	email VARCHAR(255) UNIQUE NOT NULL,
 	senha VARCHAR(65) NOT NULL,
 	data_Nasc DATE NOT NULL,
-    foto_perfil VARCHAR(55)
+    foto_perfil VARCHAR(500)
 );
 
 CREATE TABLE Tbl_Telefone_Usuario
@@ -154,7 +154,11 @@ CREATE TABLE Tbl_Produto
 	descricao VARCHAR(255) NOT NULL,
 	preco DECIMAL(7,2) NOT NULL,
 	tarja VARCHAR(20) NOT NULL,
+<<<<<<< HEAD
     cod_barras CHAR(14) NOT NULL
+=======
+    foto_produto VARCHAR(500) NOT NULL
+>>>>>>> b31941e26bc7fa3400c1efe94349d84c8a3c5dd2
 );
 
 CREATE TABLE Tbl_Compra
@@ -205,7 +209,7 @@ CREATE TABLE Tbl_Venda
 	data_Venda DATETIME NOT NULL,
 	canal_Venda ENUM('Presencial', 'Aplicativo', 'Site', 'Pendente') NOT NULL DEFAULT 'Pendente',
     status_pagamento VARCHAR(24) NOT NULL DEFAULT 'pending',
-	referencia VARCHAR(36) DEFAULT NULL,
+    referencia VARCHAR(36) DEFAULT NULL,
 	mp_payment_id VARCHAR(100) DEFAULT NULL,
 	FOREIGN KEY (id_Cliente) REFERENCES Tbl_Cliente(id),
 	FOREIGN KEY (id_Funcionario) REFERENCES Tbl_Funcionario(id)
@@ -314,6 +318,8 @@ SELECT * FROM Tbl_Pagamento_Venda ORDER BY id DESC;
 
 -- == ViewVendas ==
 CALL sp_ViewVendas;
+
+CALL sp_ViewVendaId(1);
 
 -- == ViewContaCliente ==
 
