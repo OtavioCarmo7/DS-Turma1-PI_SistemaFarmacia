@@ -1,0 +1,1 @@
+ C:\\Users\\taina.gnovais\\OneDrive\ -\ SENAC\ -\ SP\\UC12\\ola_mundo\\.dart_tool\\flutter_build\\8741b9d878e5a1383e78d607f7bc1963\\native_assets.json: 
