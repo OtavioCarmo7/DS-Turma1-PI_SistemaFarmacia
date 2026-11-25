@@ -155,7 +155,7 @@ CREATE TABLE Tbl_Produto
 	preco DECIMAL(7,2) NOT NULL,
 	tarja VARCHAR(20) NOT NULL,
     cod_barras CHAR(14) NOT NULL,
-    foto_produto VARCHAR(500) NOT NULL
+    foto_produto MEDIUMBLOB NULL
 );
 
 CREATE TABLE Tbl_Compra
