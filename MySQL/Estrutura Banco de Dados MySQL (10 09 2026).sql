@@ -153,7 +153,7 @@ CREATE TABLE Tbl_Produto
 	nome VARCHAR(100) NOT NULL,
 	descricao VARCHAR(255) NOT NULL,
 	preco DECIMAL(7,2) NOT NULL,
-	tarja VARCHAR(20) NOT NULL,
+	tarja ENUM('isenta, amarela, vermelha, preta') DEFAULT 'isenta' NOT NULL,
     cod_barras CHAR(14) NOT NULL,
     foto_produto MEDIUMBLOB NULL
 );
